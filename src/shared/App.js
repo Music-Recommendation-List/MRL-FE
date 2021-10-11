@@ -6,7 +6,7 @@ import React from 'react';
 function App() {
   return (
     <React.Fragment>
-       
+       <p>첫페이지</p>
     </React.Fragment>
   );
 }
