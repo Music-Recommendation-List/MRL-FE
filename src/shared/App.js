@@ -1,12 +1,13 @@
-import logo from '../logo.svg';
-import './App.css';
-import {Route,Link,} from "react-router-dom"
-import React from 'react';
+import logo from "../logo.svg";
+import "./App.css";
+import { Route, Link } from "react-router-dom";
+import React from "react";
+import LogIn from "../pages/LogIn";
 
 function App() {
   return (
     <React.Fragment>
-       <p>첫페이지</p>
+      <Route path="/login" exact component={LogIn} />
     </React.Fragment>
   );
 }
