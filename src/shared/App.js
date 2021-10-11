@@ -6,7 +6,7 @@ import React from 'react';
 function App() {
   return (
     <React.Fragment>
-       <p>첫페이지</p>
+       <p>첫페이지입니다</p>
     </React.Fragment>
   );
 }
