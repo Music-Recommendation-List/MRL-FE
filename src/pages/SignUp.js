@@ -24,16 +24,6 @@ const Signup = (props) => {
 
         <Grid padding="16px 0px">
           <Input
-            label="닉네임"
-            placeholder="닉네임을 입력해주세요."
-            _onChange={() => {
-              console.log("!!");
-            }}
-          />
-        </Grid>
-
-        <Grid padding="16px 0px">
-          <Input
             label="비밀번호"
             placeholder="비밀번호를 입력해주세요."
             _onChange={() => {
@@ -53,6 +43,7 @@ const Signup = (props) => {
         </Grid>
 
         <Button text="회원가입하기"></Button>
+        <Button text="취소"></Button>
       </Grid>
     </React.Fragment>
   );

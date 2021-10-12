@@ -2,8 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { Text, Input, Grid, Button } from "../elements";
 import MRL from "../MRL.png";
+import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
+import { useDispatch } from "react-redux";
 
 const LogIn = (props) => {
+  console.log(getCookie("password"));
+
+  const login = () => {
+    setCookie("userId", "bom", 3);
+    setCookie("password", "bombom", 3);
+  };
+
   return (
     <React.Fragment>
       <Grid padding="16px">
@@ -33,9 +42,15 @@ const LogIn = (props) => {
         </Grid>
 
         <Button
-          text="로그인하기"
+          text="로그인"
           _onClick={() => {
-            console.log("로그인 했어!");
+            console.log("로그인했음");
+          }}
+        ></Button>
+        <Button
+          text="회원가입"
+          _onClick={() => {
+            console.log("회원가입 할거야!");
           }}
         ></Button>
       </Grid>
