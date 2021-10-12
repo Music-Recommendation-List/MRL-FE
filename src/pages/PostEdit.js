@@ -9,7 +9,6 @@ const PostEdit = () => {
       <Grid padding="20px" margin="40px 0px">
         <Post />
         <Grid end_flex>
-
           <Button width="auto" padding="20px" margin="10px 30px 0px 30px">
             확인
           </Button>
