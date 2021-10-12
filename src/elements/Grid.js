@@ -3,6 +3,9 @@ import styled from "styled-components";
 
 const Grid = (props) => {
   const {
+    start_flex,
+    column_flex,
+    end_flex,
     is_flex,
     flex,
     position,
@@ -30,6 +33,9 @@ const Grid = (props) => {
   } = props;
 
   const styles = {
+    start_flex:start_flex,
+    column_flex: column_flex,
+    end_flex: end_flex,
     is_flex: is_flex,
     flex: flex,
     review_flex: review_flex,
@@ -66,6 +72,9 @@ const Grid = (props) => {
 
 Grid.defaultProps = {
   children: null,
+  start_flex:false,
+  column_flex: false,
+  end_flex: false,
   is_flex: false,
   review_flex: false,
   flex: false,
@@ -121,6 +130,12 @@ const GridBox = styled.div`
   ${(props) => (props.wrap ? `flex-wrap: wrap;` : "")}
   ${(props) =>
     props.border ? `border-radius: 0.4rem; border: 1px solid #718093;` : ""}
+    ${(props) =>
+    props.start_flex ? `display: flex; justify-content:flex-start;` : ""}
+        ${(props) =>
+    props.end_flex ? `display: flex; justify-content:flex-end;` : ""}
+      ${(props) =>
+    props.column_flex ? `display: flex; flex-direction:column;` : ""}
 
 @media (min-width: 501px) {
     ${(props) =>

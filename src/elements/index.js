@@ -4,5 +4,6 @@ import Text from "./Text";
 import Input from "./Input";
 import Button from "./Button";
 import DropDown from "./DropDown";
+import Upload from "./Upload"
 
-export {Grid, Image, Text, Input, Button, DropDown};
+export {Grid, Image, Text, Input, Button, DropDown, Upload};

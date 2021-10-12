@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const Text = (props) => {
-  const { bold, color, size, children, margin, width, is_main, padding, _onClick, cursor } = props;
+  const { bold, color, size, children, margin, width, is_main, padding, _onClick, cursor , center} = props;
   
-  const styles = {bold: bold, color: color, size: size, margin, width, is_main, padding: padding, _onClick: _onClick, cursor};
+  const styles = {bold: bold, color: color, size: size, margin, width, is_main, padding: padding, _onClick: _onClick, cursor, center:center};
   
   return (
       <P {...styles} onClick={_onClick}>
@@ -15,6 +15,7 @@ const Text = (props) => {
 
 Text.defaultProps = {
   children: null,
+  center:false,
   bold: false,
   color: "#222831",
   size: "1.4rem",
@@ -35,6 +36,7 @@ const P = styled.p`
   ${(props) => (props.width? `width: ${props.width};` : '')}
   ${(props) => (props.is_main? `font-size: 1.6rem; font-weight: 500; text-align: center;` : "")}
   ${(props) => (props.cursor? `cursor: pointer;`: '')};
+  ${(props) => (props.center? `text-align: center; height: 60px; line-height:60px `: "")}
 `;
 
 export default Text;

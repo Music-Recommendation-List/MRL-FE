@@ -33,7 +33,7 @@ const Image = (props) => {
 
 Image.defaultProps = {
   shape: "circle",
-  src: "https://mean0images.s3.ap-northeast-2.amazonaws.com/4.jpeg",
+  src: "https://newsimg.sedaily.com/2017/05/17/1OFYJ2OVJT_1.jpg",
   size: 3.6,
   radius: "",
 };
@@ -55,6 +55,7 @@ const AspectOutter = styled.div`
 const AspectInner = styled.div`
   position: relative;
   padding-top: 75%;
+
   overflow: hidden;
   background-image: url("${(props) => props.src}");
   background-position: center;
