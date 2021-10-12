@@ -1,9 +1,10 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Grid = (props) => {
   const {
     is_flex,
+    flex_wrap,
     flex,
     position,
     padding,
@@ -30,6 +31,7 @@ const Grid = (props) => {
   } = props;
 
   const styles = {
+    flex_wrap: flex_wrap,
     is_flex: is_flex,
     flex: flex,
     review_flex: review_flex,
@@ -65,19 +67,20 @@ const Grid = (props) => {
 };
 
 Grid.defaultProps = {
+  flex_wrap: false,
   children: null,
   is_flex: false,
   review_flex: false,
   flex: false,
   position: false,
-  width: "100%",
-  height: "100%",
+  width: '100%',
+  height: '100%',
   padding: false,
   margin: false,
   bg: false,
   center: false,
   maxWidth: false,
-  radius: "",
+  radius: '',
   borderBottom: false,
   minWidth: false,
   minHeight: false,
@@ -87,46 +90,46 @@ Grid.defaultProps = {
   left: false,
   right: false,
   maxHeight: false,
-  wrap: "",
-  border: "",
+  wrap: '',
+  border: '',
 };
 
 const GridBox = styled.div`
-  ${(props) => (props.width ? `width: ${props.width};` : "")};
-  ${(props) => (props.height ? `height: ${props.height};` : "")};
+  ${(props) => (props.width ? `width: ${props.width};` : '')};
+  ${(props) => (props.height ? `height: ${props.height};` : '')};
   box-sizing: border-box;
-  ${(props) => (props.maxWidth ? `max-width: ${props.maxWidth};` : "")}
-  ${(props) => (props.minWidth ? `min-width: ${props.minWidth};` : "")}
-  ${(props) => (props.minHeight ? `min-height: ${props.minHeight};` : "")}
-  ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
-  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
-  ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
-  ${(props) => (props.center ? `text-align: ${props.center};` : "")}
+  ${(props) => (props.maxWidth ? `max-width: ${props.maxWidth};` : '')}
+  ${(props) => (props.minWidth ? `min-width: ${props.minWidth};` : '')}
+  ${(props) => (props.minHeight ? `min-height: ${props.minHeight};` : '')}
+  ${(props) => (props.padding ? `padding: ${props.padding};` : '')}
+  ${(props) => (props.margin ? `margin: ${props.margin};` : '')}
+  ${(props) => (props.bg ? `background-color: ${props.bg};` : '')}
+  ${(props) => (props.center ? `text-align: ${props.center};` : '')}
 
   ${(props) =>
-    props.borderBottom ? `border-bottom: ${props.borderBottom};` : ""}
-  ${(props) => (props.radius ? `border-radius: 0.5rem;` : "")}
+    props.borderBottom ? `border-bottom: ${props.borderBottom};` : ''}
+  ${(props) => (props.radius ? `border-radius: 0.5rem;` : '')}
   ${(props) =>
-    props.shadow ? `box-shadow: 0.3rem 0.3rem 0.3rem #dcdde1;` : ""}
+    props.shadow ? `box-shadow: 0.3rem 0.3rem 0.3rem #dcdde1;` : ''}
   ${(props) =>
     props.is_flex
       ? `display: flex; align-items: center; justify-content: space-between;`
-      : ""}
-  ${(props) => (props.position ? `position: ${props.position};` : "")}
-  ${(props) => (props.top ? `top: ${props.top};` : "")}
-  ${(props) => (props.left ? `left: ${props.left};` : "")}
-  ${(props) => (props.right ? `right: ${props.right};` : "")}
-  ${(props) => (props.maxHeight ? `max-height: ${props.maxHeight};` : "")}
-  ${(props) => (props.flex ? `display: flex;` : "")}
-  ${(props) => (props.wrap ? `flex-wrap: wrap;` : "")}
+      : ''}
+  ${(props) => (props.position ? `position: ${props.position};` : '')}
+  ${(props) => (props.top ? `top: ${props.top};` : '')}
+  ${(props) => (props.left ? `left: ${props.left};` : '')}
+  ${(props) => (props.right ? `right: ${props.right};` : '')}
+  ${(props) => (props.maxHeight ? `max-height: ${props.maxHeight};` : '')}
+  ${(props) => (props.flex ? `display: flex;` : '')}
+  ${(props) => (props.wrap ? `flex-wrap: wrap;` : '')}
   ${(props) =>
-    props.border ? `border-radius: 0.4rem; border: 1px solid #718093;` : ""}
+    props.border ? `border-radius: 0.4rem; border: 1px solid #718093;` : ''}
 
 @media (min-width: 501px) {
     ${(props) =>
       props.review_flex
         ? `display: flex; align-items: center; justify-content: space-between;`
-        : ""}
+        : ''}
   }
 `;
 
