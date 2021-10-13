@@ -18,43 +18,41 @@ const MenuProps = {
   },
 };
 
-const names = [
-  '댄스',
-  '발라드',
-  '팝',
+// const names = [
+//   '댄스',
+//   '발라드',
+//   '팝',
+// ];
 
-];
+export default function MultipleSelectCheckmarks(props) {
+  const {
+    _onChange,
+    value,
+    list,
+    label,
+  } = props;
 
-export default function MultipleSelectCheckmarks() {
-  const [personName, setPersonName] = React.useState([]);
-
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a the stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
-  };
+  const names = [
+  ...list
+  ];
 
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
+        <InputLabel id="demo-multiple-checkbox-label">{label}</InputLabel>
         <Select
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
           multiple
-          value={personName}
-          onChange={handleChange}
+          value={value}
+          onChange={_onChange}
           input={<OutlinedInput label="Tag" />}
           renderValue={(selected) => selected.join(', ')}
           MenuProps={MenuProps}
         >
           {names.map((name) => (
             <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
+              <Checkbox checked={value.indexOf(name) > -1} />
               <ListItemText primary={name} />
             </MenuItem>
           ))}

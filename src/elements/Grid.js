@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const Grid = (props) => {
   const {
+    overflow,
     start_flex,
     column_flex,
     end_flex,
@@ -33,6 +34,7 @@ const Grid = (props) => {
   } = props;
 
   const styles = {
+    overflow:overflow,
     start_flex:start_flex,
     column_flex: column_flex,
     end_flex: end_flex,
@@ -72,6 +74,7 @@ const Grid = (props) => {
 
 Grid.defaultProps = {
   children: null,
+  overflow:"",
   start_flex:false,
   column_flex: false,
   end_flex: false,
@@ -136,6 +139,7 @@ const GridBox = styled.div`
     props.end_flex ? `display: flex; justify-content:flex-end;` : ""}
       ${(props) =>
     props.column_flex ? `display: flex; flex-direction:column;` : ""}
+    ${(props)=> (props.overflow ? `overflow:hidden;`: "")}
 
 @media (min-width: 501px) {
     ${(props) =>
