@@ -3,20 +3,32 @@ import styled from "styled-components";
 import { Text, Input, Grid, Button } from "../elements";
 import MRL from "../MRL.png";
 import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
-import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-
+// import { useHistory } from "react-router-dom";
 import TestHeader from "./TestHeader";
 
+//1. ation 불러다 사용하기
+import { useDispatch } from "react-redux";
+// 4. 디스패치 안에 넣을 액션생성함수 가져오기
+import { actionCreators as userActions } from "../redux/modules/user";
+
 const LogIn = (props) => {
-  let history = useHistory();
+  //2. 디스패치 만들기
+  const dispatch = useDispatch();
 
-  console.log(getCookie("userId"));
+  const [id, setId] = React.useState("");
+  const [pwd, setPwd] = React.useState("");
 
+  //3. login함수에 디스패치 넣기 dispatch()
   const login = () => {
-    setCookie("userId", "bom", 3);
-    setCookie("password", "bombom", 3);
+    if (id === "" || pwd === "") {
+      window.alert("아이디 혹은 비밀번호를 입력해주세요!");
+      return;
+    }
+    //5. 디스패치안에 액션생성함수 넣기(loginFB대신 loginAction 넣기)
+    dispatch(userActions.loginFB(id, pwd));
   };
+
+  // let history = useHistory();
 
   return (
     <React.Fragment>
@@ -31,8 +43,8 @@ const LogIn = (props) => {
           <Input
             label="아이디"
             placeholder="아이디를 입력해주세요."
-            _onChange={() => {
-              console.log("아이디 입력했어!");
+            _onChange={(e) => {
+              setId(e.target.value);
             }}
           />
         </Grid>
@@ -41,25 +53,30 @@ const LogIn = (props) => {
           <Input
             label="패스워드"
             placeholder="패스워드 입력해주세요."
-            _onChange={() => {
-              console.log("패스워드 입력했어!");
+            type="password"
+            _onChange={(e) => {
+              setPwd(e.target.value);
             }}
           />
         </Grid>
 
         <Button
-          text="로그인"
+          height="50px"
           _onClick={() => {
             console.log("로그인했음");
             login();
           }}
-        ></Button>
+        >
+          로그인
+        </Button>
         <Button
-          text="회원가입"
-          _onClick={() => {
-            history.push("/signup");
-          }}
-        ></Button>
+          height="50px"
+          // _onClick={() => {
+          //   history.push("/signup");
+          // }}
+        >
+          회원가입
+        </Button>
       </Grid>
     </React.Fragment>
   );

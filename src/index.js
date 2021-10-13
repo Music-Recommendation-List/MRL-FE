@@ -1,25 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import reportWebVitals from "./reportWebVitals";
 import App from "./shared/App";
 
 //1. 리덕스 연결
 import { Provider } from "react-redux";
 
-//4. createStore 연결
-import { createStore } from "redux";
-
-//3. createStore() 안에 state저장 / 5. 함수 안에 뱉고 싶은 정보 저장하기
-let store = createStore(() => {});
+//3. store 연결
+import store from "./redux/configureStore";
 
 ReactDOM.render(
-  <React.StrictMode>
-    {/* 2. Provider로 감싸기, 감싸진 애들은 props없이도 state 공유 가능 */}
-    {/* 6. store={store}를 입력하면 provider로 감싸진곳에서 state를 사용가능 */}
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  // 2. Provider로 감싸기, 감싸진 애들은 props없이도 state 공유 가능
+  // 4. store={store}를 입력하면 provider로 감싸진곳에서 state를 사용가능
+  // 5. store에 history를 새로 만들었기때문에 App.js로 가서 수정해준다.
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById("root")
 );
 
@@ -28,3 +25,5 @@ ReactDOM.render(
 // function 함수명() {}
 
 // export default connect(함수명)(파일명);
+
+reportWebVitals();
