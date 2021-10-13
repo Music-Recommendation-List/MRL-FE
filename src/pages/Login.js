@@ -3,10 +3,15 @@ import styled from "styled-components";
 import { Text, Input, Grid, Button } from "../elements";
 import MRL from "../MRL.png";
 import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
+import TestHeader from "./TestHeader";
+
 const LogIn = (props) => {
-  console.log(getCookie("password"));
+  let history = useHistory();
+
+  console.log(getCookie("userId"));
 
   const login = () => {
     setCookie("userId", "bom", 3);
@@ -15,6 +20,7 @@ const LogIn = (props) => {
 
   return (
     <React.Fragment>
+      <TestHeader />
       <Grid padding="16px">
         <Image src={MRL} />
         <Text size="32px" bold>
@@ -45,12 +51,13 @@ const LogIn = (props) => {
           text="로그인"
           _onClick={() => {
             console.log("로그인했음");
+            login();
           }}
         ></Button>
         <Button
           text="회원가입"
           _onClick={() => {
-            console.log("회원가입 할거야!");
+            history.push("/signup");
           }}
         ></Button>
       </Grid>

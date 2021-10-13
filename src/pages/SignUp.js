@@ -2,8 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { Grid, Text, Input, Button } from "../elements";
 import MRL from "../MRL.png";
+import { useHistory } from "react-router-dom";
 
 const Signup = (props) => {
+  let history = useHistory();
+
   return (
     <React.Fragment>
       <Grid padding="16px">
@@ -43,7 +46,12 @@ const Signup = (props) => {
         </Grid>
 
         <Button text="회원가입하기"></Button>
-        <Button text="취소"></Button>
+        <Button
+          text="취소"
+          _onClick={() => {
+            history.push("/");
+          }}
+        ></Button>
       </Grid>
     </React.Fragment>
   );
