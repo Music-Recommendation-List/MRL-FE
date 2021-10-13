@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Text, Input, Grid, Button } from "../elements";
 import MRL from "../MRL.png";
 import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import TestHeader from "./TestHeader";
 
 //1. ation 불러다 사용하기
@@ -28,11 +28,11 @@ const LogIn = (props) => {
     dispatch(userActions.loginFB(id, pwd));
   };
 
-  // let history = useHistory();
+  //나중에 리덕스사용시 제거
+  let history = useHistory();
 
   return (
     <React.Fragment>
-      <TestHeader />
       <Grid padding="16px">
         <Image src={MRL} />
         <Text size="32px" bold>
@@ -71,9 +71,9 @@ const LogIn = (props) => {
         </Button>
         <Button
           height="50px"
-          // _onClick={() => {
-          //   history.push("/signup");
-          // }}
+          _onClick={() => {
+            history.push("/signup");
+          }}
         >
           회원가입
         </Button>

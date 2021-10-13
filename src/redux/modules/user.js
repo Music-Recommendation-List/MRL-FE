@@ -8,6 +8,9 @@ import { auth } from "../../shared/firebase";
 
 import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
 
+//axios
+// import axios from "axios";
+
 // Actions
 const LOG_IN = "LOG_IN";
 const LOG_OUT = "LOG_OUT";

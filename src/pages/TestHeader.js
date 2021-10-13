@@ -1,4 +1,5 @@
 import React from "react";
+import { Text, Grid, Button } from "../elements";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -30,32 +31,75 @@ const TestHeader = (props) => {
   //2. is_login이 true이면 로그아웃버튼을 보여줘라!!
   if (is_login) {
     return (
-      <React.Fragment>
-        <div>
-          <button
-            onClick={() => {
+      <Grid is_flex padding="4px 16px">
+        <Grid>
+          <Text margin="0px" size="24px" bold>
+            MRL🎵
+          </Text>
+        </Grid>
+        <Grid is_flex>
+          <Button>작성</Button>
+          <Button>알림</Button>
+          <Button
+            _onClick={() => {
               dispatch(userActions.logOut({}));
             }}
           >
             로그아웃
-          </button>
-        </div>
-      </React.Fragment>
+          </Button>
+        </Grid>
+      </Grid>
     );
+    // return (
+    //   <React.Fragment>
+    //     <div>
+    //       <button
+    //         onClick={() => {
+    //           dispatch(userActions.logOut({}));
+    //         }}
+    //       >
+    //         로그아웃
+    //       </button>
+    //     </div>
+    //   </React.Fragment>
+    // );
   }
   return (
-    <React.Fragment>
-      <div>
-        <button
-          onClick={() => {
+    <Grid is_flex padding="4px 16px">
+      <Grid>
+        <Text margin="0px" size="24px" bold>
+          MRL🎵
+        </Text>
+      </Grid>
+      <Grid is_flex>
+        <Button
+          _onClick={() => {
             history.push("/login");
-            console.log("버튼");
           }}
         >
           로그인
-        </button>
-      </div>
-    </React.Fragment>
+        </Button>
+        <Button
+          _onClick={() => {
+            history.push("/signup");
+          }}
+        >
+          회원가입
+        </Button>
+      </Grid>
+    </Grid>
+    // <React.Fragment>
+    //   <div>
+    //     <button
+    //       onClick={() => {
+    //         history.push("/login");
+    //         console.log("버튼");
+    //       }}
+    //     >
+    //       로그인
+    //     </button>
+    //   </div>
+    // </React.Fragment>
   );
 };
 export default TestHeader;
