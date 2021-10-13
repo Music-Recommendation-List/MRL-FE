@@ -4,13 +4,14 @@ import Grid from '../elements/Grid';
 import Image from '../elements/Image';
 import Text from '../elements/Text';
 import Button from '../elements/Button';
-
-import Header from '../shared/Header';
+import { actionCreators as userActions } from '../redux/modules/user';
+import { useDispatch } from 'react-redux';
 
 const Main = (props) => {
+  const dispatch = useDispatch();
+  dispatch(userActions.getPosts());
   return (
     <React.Fragment>
-      <Header />
       <Grid padding="16px" is_flex>
         <Button
           _onClick={() => {
@@ -52,6 +53,7 @@ const Main = (props) => {
             {props.hashtag.ballad}
             {props.hashtag.season}
           </Text>
+          <Text>{props.like.length}개</Text>
         </Grid>
         <Grid
           _onClick={() => {
@@ -103,6 +105,7 @@ Main.defaultProps = {
     ballad: '#발라드',
     season: '#겨울',
   },
+  like: ['dkdkf77'],
 };
 
 export default Main;
