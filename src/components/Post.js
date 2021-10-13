@@ -3,7 +3,7 @@ import { Text, Input, Image, Grid, Button, Upload } from "../elements";
 
 const Post = (props) => {
 
-    const {user_name,singer,desc,youtube_url,title} = props;
+    const {singer,musicName,desc,lnik,musicGenre,feeling,season , user_name} = props;
 
   return (
     <React.Fragment>
@@ -17,13 +17,16 @@ const Post = (props) => {
           <Grid bg="yellow">
             <Image shape="rectangle" />
           </Grid>
-          <Grid height="350px" border margin="0px 0px 0px 20px" padding="20px" overflow >
-            <Text margin="10px 0 20px 0px">{singer}</Text>
-            <Text margin="0 0 20px 0px">{desc}</Text>
-            <Text margin="0 0 20px 0px">{youtube_url}</Text>
-            <Text margin="0 0 20px 0px">버튼 호버</Text>
-            <Text margin="0 0 20px 0px">버튼 호버</Text>
-            <Text margin="0 0 20px 0px">{user_name}</Text>
+          <Grid height="350px" border margin="0px 0px 0px 20px" padding="10px 15px" overflow >
+            <Text margin="0 0 15px 0px" size="16px" bold right>작성자 : {user_name}</Text>
+            <Text margin="10px 0 20px 0px" bold>가수이름 : {singer}</Text>
+            <Text margin="10px 0 20px 0px" bold>곡 이름: {musicName}</Text>
+            <Text margin="0 0 20px 0px" bold>곡 설명 : {desc}</Text>
+            <Text margin="0 0 20px 0px" bold> 유튜브 링크 : {lnik}</Text>
+            <Text margin="0 0 20px 0px" bold>{musicGenre},{feeling},{season}</Text>
+            <Text margin="0 0 20px 0px"></Text>
+            <Text margin="0 0 20px 0px"></Text>
+            
           </Grid>
         </Grid>
 
@@ -45,12 +48,17 @@ const Post = (props) => {
 };
 
 Post.defaultProps = {
-  user_name: "GC_EE",
   singer: "외국인",
-  desc: "Good boy",
-  youtube_url: "https://newsimg.sedaily.com/2017/05/17/1OFYJ2OVJT_1312312312312312312311.jpg",
-  comment_cnt: 10,
-
+  musicName:"보고싶다",
+  desc: "missing you",
+  lnik: "www.abc.com423432432423432432432432423",
+  musicGenre:"발라드",
+  feeling :"우울",
+  season :"가을",
+  user_name:"GCEE",
+  id: 0,
 };
+
+
 
 export default Post;

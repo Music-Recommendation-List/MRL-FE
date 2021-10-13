@@ -19,7 +19,7 @@ const PostAdd = (props) => {
   const [ singer, setSinger] = React.useState("")
   const [ musicName, setMusicName] = React.useState("")
   const [ desc, setDesc] = React.useState("")
-  const [ lnik, setLink] = React.useState("")
+  const [ link, setLink] = React.useState("")
   const [musicGenre, setMusicGenre] = React.useState([]);
   const [feeling, setFeeling] = React.useState([]);
   const [season, setSeason] = React.useState([]);
@@ -72,7 +72,7 @@ const PostAdd = (props) => {
 
   // 리덕스 전송 
   const save = () => {
-    dispatch(userActions.addPostDB(singer,musicName,desc,lnik,musicGenre,feeling,season))
+    dispatch(userActions.addPostDB(singer,musicName,desc,link,musicGenre,feeling,season))
   }
 
 
