@@ -5,7 +5,7 @@ import { produce } from "immer";
 //axios
 import axios from "axios";
 
-import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
+// import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
 
 // Actions
 const LOG_OUT = "LOG_OUT";
@@ -81,12 +81,6 @@ const signupDB = (id, pwd, pwd_check) => {
         // console.log(res, "회원가입res확인");
 
         if (res.data.ok === true) {
-          // dispatch(
-          //   setUser({
-          //     userId: res.data.result.userId,
-          //     token: res.data.result.token,
-          //   })
-          // );
           alert(res.data.message);
           history.push("/");
         } else {

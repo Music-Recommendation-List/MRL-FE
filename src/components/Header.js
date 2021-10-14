@@ -1,18 +1,14 @@
 import React from "react";
 import { Text, Grid, Button } from "../elements";
-import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import mini_mrl from "../../src/mini_mrl.png";
 import styled from "styled-components";
 
-//쿠키가 있나 확인해야 하니까
-import { getCookie, deleteCookie } from "../shared/Cookie";
+import { history } from "../redux/configureStore";
 
 const Header = (props) => {
   const dispatch = useDispatch();
-
-  let history = useHistory();
 
   //1. state로 로그인 확인 데이터 만들기(스토어 연결시 필요없는 작업)
   // const [is_login, setIsLogIn] = React.useState(false);
@@ -46,6 +42,7 @@ const Header = (props) => {
           <Button
             _onClick={() => {
               dispatch(userActions.logOut({}));
+              history.push("/");
             }}
           >
             로그아웃

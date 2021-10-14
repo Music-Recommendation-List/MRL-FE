@@ -13,16 +13,6 @@ const Signup = (props) => {
   const [pwd_check, setPwdCheck] = React.useState("");
 
   const signup = () => {
-    // if (id === "" || pwd === "") {
-    //   window.alert("아이디, 패스워드을 모두 입력해주세요!");
-    //   return;
-    // }
-
-    // if (pwd !== pwd_check) {
-    //   window.alert("패스워드와 패스워드 확인이 일치하지 않습니다!");
-    //   return;
-    // }
-
     dispatch(userActions.signupDB(id, pwd, pwd_check));
   };
 
