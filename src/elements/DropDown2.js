@@ -1,52 +1,34 @@
-import * as React from 'react';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import * as React from "react";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormHelperText from "@mui/material/FormHelperText";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
-export default function DropDown2() {
-  const [age, setAge] = React.useState('');
+export default function DropDown2(props) {
+  const { _onChange, value, label, list1, list2, list3, list4, help } = props;
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
 
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-helper-label">{label}</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
-          value={age}
-          label="Age"
-          onChange={handleChange}
+          value={value}
+          label={label}
+          onChange={_onChange}
         >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={list1}>{list1}</MenuItem>
+          <MenuItem value={list2}>{list2}</MenuItem>
+          <MenuItem value={list3}>{list3}</MenuItem>
+          <MenuItem value={list4}>{list4}</MenuItem>
         </Select>
-        <FormHelperText>With label + helper text</FormHelperText>
-      </FormControl>
-      <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <Select
-          value={age}
-          onChange={handleChange}
-          displayEmpty
-          inputProps={{ 'aria-label': 'Without label' }}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-        <FormHelperText>Without label</FormHelperText>
+        <FormHelperText>{help}</FormHelperText>
       </FormControl>
     </div>
   );

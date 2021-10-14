@@ -40,49 +40,37 @@ const PostAdd = (props) => {
     setUrl(e.target.value);
   };
 
-  const selectGenre = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setCategory1(
-      // On autofill we get a the stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+  const selectGenre = (e) => {
+    setCategory1(e.target.value)
+
   };
 
-  const selectFeeling = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setCategory2(
-      // On autofill we get a the stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+  const selectFeeling = (e) => {
+    setCategory2(e.target.value)
+
   };
 
-  const selectSeason = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setCategory3(
-      // On autofill we get a the stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
-  };
+  const selectSeason = (e) => {
+    setCategory3(e.target.value)
+  }
+
+
 
   const data = {
     singer: singer,
     songName: songName,
     desc: desc,
     url: url,
-    category1: "category1",
-    category2: "category2",
-    category3: "category3",
+    category1: category1,
+    category2: category2,
+    category3: category3,
   };
 
   // 리덕스 전송
   const save = () => {
+
     dispatch(userActions.addPostDB(data));
+
   };
 
   return (
@@ -141,23 +129,29 @@ const PostAdd = (props) => {
                 <Text center size="20px" width="70px" margin="6px 32px 0px 0px">
                   장르
                 </Text>
-                <DropDown
+                <DropDown2
                   _onChange={selectGenre}
                   value={category1}
-                  list={["댄스", "발라드", "팝"]}
-                  label="장르를 선택해주세요!"
+                  label="장르 :)"
+                  help="장르를 선택해주세요!"
+                  list1="가요"
+                  list2="힙합"
+                  list3="발라드"
                 />
               </Grid>
 
               <Grid flex>
                 <Text center size="20px" width="70px" margin="6px 32px 0px 0px">
-                  기분
+                  감성
                 </Text>
-                <DropDown
+                <DropDown2
                   _onChange={selectFeeling}
                   value={category2}
-                  list={["기쁜", "슬픈", "우울"]}
-                  label="어울리는 기분을 선택해주세요!"
+                  label="기분 :)"
+                  help="어울리는 기분을 선택해주세요!"
+                  list1="기쁨"
+                  list2="슬픔"
+                  list3="우울"
                 />
               </Grid>
 
@@ -165,11 +159,16 @@ const PostAdd = (props) => {
                 <Text center size="20px" width="70px" margin="6px 32px 0px 0px">
                   계절
                 </Text>
-                <DropDown
+
+                <DropDown2
                   _onChange={selectSeason}
                   value={category3}
-                  list={["봄", "여름", "가을", "겨울"]}
-                  label="어울리는 계절을 선택해주세요!"
+                  label="계절 :)"
+                  help="어울리는 계절을 선택해주세요!"
+                  list1="봄"
+                  list2="여름"
+                  list3="가을"
+                  list4="겨울"
                 />
               </Grid>
             </Grid>
