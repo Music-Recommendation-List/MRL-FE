@@ -3,14 +3,15 @@ import { Text, Input, Image, Grid, Button, Upload } from "../elements";
 
 const Post = (props) => {
 
-    const {singer,musicName,desc,lnik,musicGenre,feeling,season , user_name} = props;
+    const {singer,musicName,desc,lnik,musicGenre,feeling,season , user_name,} = props;
+
 
   return (
     <React.Fragment>
       <Grid width="50vw" margin="50px auto 20px">
 
         <Text margin="20px 0px" size="36px" bold center>
-          상세페이지
+           상세페이지
         </Text>
 
         <Grid is_flex>
@@ -48,6 +49,7 @@ const Post = (props) => {
 };
 
 Post.defaultProps = {
+ 
   singer: "외국인",
   musicName:"보고싶다",
   desc: "missing you",
@@ -57,6 +59,7 @@ Post.defaultProps = {
   season :"가을",
   user_name:"GCEE",
   id: 0,
+ 
 };
 
 

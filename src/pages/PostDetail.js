@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Input, Image, Grid, Button } from "../elements";
+
 
 import Post from "../components/Post";
 import CommentWrite from "../components/CommentWrite";

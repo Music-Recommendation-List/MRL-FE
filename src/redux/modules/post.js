@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import instance from '../../common/axios'
+import instance from "../../common/axios";
+import axios from "axios";
 
 //액션타입
 const SET_POST = "SET_POST";
@@ -12,61 +13,75 @@ const addPost = createAction(ADD_POST, (post) => ({ post })); // addPost()에 �
 
 //초기값
 const initialState = {
-  list: [],
+  list: [
+    {
+      singer: "김범수",
+      songName: "보고싶다",
+      desc: "매우좋음",
+      url: "wwww.naver.com",
+      category1: "발라드",
+      category2: "그리울때",
+      category3: "가을",
+    },
+    {
+      id:"1",
+      singer: "닥터스트레인지",
+      songName: "스트레인지",
+      desc: "좋음",
+      url: "wwww.daum.com",
+      musicGenre: "팝",
+      feeling: "기쁠때",
+      season: "여름",
+    },
+  ],
 };
 
-const initialPost = {
-  user_info: {
-    id: 0,
-    user_name: "gcee",
-  },
+// const initialPost = {
+//   user_info: {
+//     id: 0,
+//     user_name: "gcee",
+//   },
 
-  contents1: "장르",
-  contents2: "기분",
-  contents3: "계절",
+//   contents1: "장르",
+//   contents2: "기분",
+//   contents3: "계절",
 
-  singer: "김법수",
-  music_name: "보고싶다",
-  youtube_url: "",
-};
+//   singer: "김법수",
+//   music_name: "보고싶다",
+//   youtube_url: "",
+// };
 
-const addPostDB = (singer,musicName,desc,link,musicGenre,feeling,season) => {
+const addPostDB = (data) => {
   return function (dispatch, getState, { history }) {
-  
-    // dispatch(addPost(res.data.result));
-    
-    // const data = {
-    //   singer,musicName, desc, link, musicGenre, feeling, season
-    // }
+    const headers = { 
+      //  'Content-Type': 'multipart/form-data', 
+      'Content-Type': 'application/json',
+       'Access-Control-Allow-Origin': '*',};
 
+    console.log("진입",data)
+    axios
+    .post('http://3.34.44.44/api/posts/write', data,{headers:headers} )
+    //requset랑
+    .then((res) => {
 
-    // instance
-    // .post('/api/posts/write', data)
-    // //requset랑
-    // .then((res) => { 
-
-    //   // alert(res.data.message)
-    //   // history.push("/");
-    // })
-    // .catch((error) => {
-    //   console.error(error.response.data.message);
-    // });
-
+      alert(res.data.message)
+      // history.push("/");
+    })
+    .catch((error) => {
+      console.error(error.response.data.message);
+    });
   };
 };
 
 //리듀서
 export default handleActions(
   {
-    [SET_POST]: (state, action) =>
-      produce(state, (draft) => {
-  
-      }),
+    [SET_POST]: (state, action) => produce(state, (draft) => {}),
 
-    [ADD_POST]: (state, action) => produce(state, (draft) => {
-      // draft.list.push(action.payload.post)
-      draft.list = action.payload.post
-    }),
+    [ADD_POST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list.push(action.payload.post);
+      }),
   },
   initialState
 );
