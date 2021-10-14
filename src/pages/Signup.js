@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Grid, Text, Input, Button } from '../elements';
 // import MRL from '../MRL.png';
-import user, { actionCreators as userActions } from '../redux/modules/user';
+import { actionCreators as userActions } from '../redux/modules/user';
 import { useDispatch } from 'react-redux';
 import { history } from '../redux/configureStore';
 

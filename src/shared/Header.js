@@ -4,7 +4,7 @@ import Text from '../elements/Text';
 import Button from '../elements/Button';
 import { getCookie, deleteCookie } from './Cookie';
 import { useSelector, useDispatch } from 'react-redux';
-import user, { actionCreators as userActions } from '../redux/modules/user.js';
+import user, { actionCreators as userActions } from '../redux/modules/user';
 import { history } from '../redux/configureStore';
 
 const Header = (props) => {

@@ -4,12 +4,14 @@ import { createBrowserHistory } from 'history';
 import { connectRouter } from 'connected-react-router';
 
 import User from './modules/user';
+import Post from './modules/post';
 
 export const history = createBrowserHistory();
 
 // combineReducer 로 리듀서 들을 결합 해줌
 const rootReducer = combineReducers({
   user: User,
+  post: Post,
   router: connectRouter(history),
 });
 

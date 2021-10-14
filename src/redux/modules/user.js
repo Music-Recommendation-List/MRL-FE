@@ -21,34 +21,42 @@ const initialState = {
 };
 
 //middleware actions
-// dispatch 필요 , us
-// post.js 필요
-const getPosts = () => {
+const loginAction = (user) => {
   return function (dispatch, getState, { history }) {
-    const headers = {
-      //   "Content-Type": "multipart/form-data",
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    };
-
-    axios
-      .post('http://3.34.44.44/api/posts', {}, { headers: headers })
-      .then((res) => {
-        console.log(res);
-        // dispatch();
-        // setUser({
-        //   user_name: username,
-        // });
-      })
-
-      .catch((err) => {
-        console.log(err);
-      });
-    // console.log(history);
-    // dispatch(logIn(user));
-    // history.push('/');
+    console.log(history);
+    dispatch(logIn(user));
+    history.push('/');
   };
 };
+
+// dispatch 필요 , us
+// post.js 필요
+// const getPosts = () => {
+//   return function (dispatch, getState, { history }) {
+//     const headers = {
+//       //   "Content-Type": "multipart/form-data",
+//       'Content-Type': 'application/json',
+//       'Access-Control-Allow-Origin': '*',
+//     };
+
+//     axios
+//       .post('http://3.34.44.44/api/posts', {}, { headers: headers })
+//       .then((res) => {
+//         console.log(res);
+//         // dispatch();
+//         // setUser({
+//         //   user_name: username,
+//         // });
+//       })
+
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//     // console.log(history);
+//     // dispatch(logIn(user));
+//     // history.push('/');
+//   };
+// };
 
 //reduce
 export default handleActions(
@@ -75,7 +83,7 @@ const actionCreators = {
   logIn,
   logOut,
   getUser,
-  getPosts,
+  loginAction,
 };
 
 export { actionCreators };

@@ -13,7 +13,7 @@ import Header from './Header';
 function App() {
   return (
     <ConnectedRouter history={history}>
-      <Header></Header>
+      <Header />
       <Route path="/" exact component={Main} />
       <Route path="/login" exact component={Login} />
       <Route path="/signup" exact component={SignUp} />
