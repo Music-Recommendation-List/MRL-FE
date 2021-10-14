@@ -15,4 +15,4 @@ const PostDetail = (props) => {
   );
 };
 
-export default PostDetail;
+export default PostDetail;  

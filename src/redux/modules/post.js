@@ -24,7 +24,7 @@ const initialState = {
       category3: "가을",
     },
     {
-      id:"1",
+      id: "1",
       singer: "닥터스트레인지",
       songName: "스트레인지",
       desc: "좋음",
@@ -51,32 +51,60 @@ const initialState = {
 //   youtube_url: "",
 // };
 
+//포스트 가져오기
+const getPostsDB = () => {
+  return function (dispatch, getState, { history }) {
+    const headers = {
+      // 'Content-Type': 'multipart/form-data',
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    };
+    // console.log("함수 진입");
+    axios
+      .post("http://3.34.44.44/api/posts", {}, { headers: headers })
+      .then((res) => {
+        // console.log("axios 연결", res);
+        // console.log("데이터의 정확한 값", res.data.result);
+        dispatch(setPost(res.data.result));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+// 포스트 추가하기
 const addPostDB = (data) => {
   return function (dispatch, getState, { history }) {
-    const headers = { 
-      //  'Content-Type': 'multipart/form-data', 
-      'Content-Type': 'application/json',
-       'Access-Control-Allow-Origin': '*',};
+    const headers = {
+      //  'Content-Type': 'multipart/form-data',
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    };
 
-    console.log("진입",data)
+    // console.log("진입", data);
     axios
-    .post('http://3.34.44.44/api/posts/write', data,{headers:headers} )
-    //requset랑
-    .then((res) => {
-
-      alert(res.data.message)
-      // history.push("/");
-    })
-    .catch((error) => {
-      console.error(error.response.data.message);
-    });
+      .post("http://3.34.44.44/api/posts/write", data, { headers: headers })
+      //requset랑
+      .then((res) => {
+        // console.log(res.data.result);
+        dispatch(addPost(res.data.result));
+        alert(res.data.message);
+        history.push("/");
+      })
+      .catch((error) => {
+        console.error(error.response.data.message);
+      });
   };
 };
 
 //리듀서
 export default handleActions(
   {
-    [SET_POST]: (state, action) => produce(state, (draft) => {}),
+    [SET_POST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list = action.payload.post_list;
+      }),
 
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
@@ -92,6 +120,7 @@ const actionCreators = {
   addPost,
 
   addPostDB,
+  getPostsDB,
 };
 
 export { actionCreators };
