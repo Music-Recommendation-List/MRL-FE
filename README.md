@@ -1,2 +1,0 @@
-forest-client-application
-React Client Application
