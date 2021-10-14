@@ -1,8 +1,8 @@
 import React from "react";
-import TestHeader from "./TestHeader";
+import Header from "../components/Header";
 
 const TestMain = (props) => {
-  return <TestHeader />;
+  return <Header />;
 };
 
 export default TestMain;

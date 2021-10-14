@@ -4,7 +4,6 @@ import { Text, Input, Grid, Button } from "../elements";
 import MRL from "../MRL.png";
 import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
 import { useHistory } from "react-router-dom";
-import TestHeader from "./TestHeader";
 
 //1. ation 불러다 사용하기
 import { useDispatch } from "react-redux";
@@ -24,8 +23,8 @@ const LogIn = (props) => {
       window.alert("아이디 혹은 비밀번호를 입력해주세요!");
       return;
     }
-    //5. 디스패치안에 액션생성함수 넣기(loginFB대신 loginAction 넣기)
-    dispatch(userActions.loginFB(id, pwd));
+    //5. 디스패치안에 액션생성함수 넣기
+    dispatch(userActions.loginDB(id, pwd));
   };
 
   //나중에 리덕스사용시 제거
@@ -33,13 +32,12 @@ const LogIn = (props) => {
 
   return (
     <React.Fragment>
-      <Grid padding="16px">
+      <Grid padding="16px" width="50%" margin="auto">
         <Image src={MRL} />
-        <Text size="32px" bold>
+        <Text size="25px" bold margin="0">
           로그인
         </Text>
-
-        <Grid padding="16px 0px">
+        <Grid padding="10px 0px">
           <Input
             label="아이디"
             placeholder="아이디를 입력해주세요."
@@ -48,8 +46,7 @@ const LogIn = (props) => {
             }}
           />
         </Grid>
-
-        <Grid padding="16px 0px">
+        <Grid padding="10px 0px">
           <Input
             label="패스워드"
             placeholder="패스워드 입력해주세요."
@@ -59,9 +56,12 @@ const LogIn = (props) => {
             }}
           />
         </Grid>
-
         <Button
+          bg="black"
+          color="#FFFFFF"
+          margin="5px 0px"
           height="50px"
+          radius="0.4rem"
           _onClick={() => {
             console.log("로그인했음");
             login();
@@ -70,7 +70,11 @@ const LogIn = (props) => {
           로그인
         </Button>
         <Button
+          bg="black"
+          color="#FFFFFF"
+          margin="5px 0px"
           height="50px"
+          radius="0.4rem"
           _onClick={() => {
             history.push("/signup");
           }}
@@ -87,8 +91,8 @@ const Image = styled.img`
   justify-content: center;
   align-items: center;
   margin: auto;
-  width: 30%;
-  height: 30%;
+  width: 40%;
+  height: 40%;
 `;
 
 export default LogIn;

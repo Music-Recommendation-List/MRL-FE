@@ -2,17 +2,12 @@
 import { createAction, handleActions } from "redux-actions";
 //불변성작업을 위한 immer
 import { produce } from "immer";
-
-//백연결 후 삭제하기
-import { auth } from "../../shared/firebase";
+//axios
+import axios from "axios";
 
 import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
 
-//axios
-// import axios from "axios";
-
 // Actions
-const LOG_IN = "LOG_IN";
 const LOG_OUT = "LOG_OUT";
 const GET_USER = "GET_USER";
 const SET_USER = "SET_USER";
@@ -28,55 +23,82 @@ const initialState = {
   is_login: false,
 };
 
-// const user_initial = {
-//   userId: "test1",
-//   password: "1111",
-//   passwordConfirm: "1111",
-// };
-
-//middleware actions
-// const loginAction = (user) => {
-//   return function (dispatch, getState, { history }) {
-//     console.log(history);
-//     dispatch(setUser(user));
-//     history.push("/");
-//   };
-// };
-
-//middleware actions (현재 파이어베이스로 연결 -> axios로 변경하기)
-const loginFB = (id, pwd) => {
+//middleware
+const loginDB = (id, pwd) => {
   return function (dispatch, getState, { history }) {
-    auth
-      .signInWithEmailAndPassword(id, pwd)
-      .then((user) => {
-        console.log(user);
-        dispatch(setUser(user));
-        history.push("/");
+    const headers = {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    };
+    axios
+      .post(
+        "http://3.34.44.44/api/users/logIn",
+        {
+          userId: id,
+          password: pwd,
+        },
+        { headers: headers }
+      )
+      .then((res) => {
+        // console.log(res, "res확인");
+
+        if (res.data.ok === true) {
+          dispatch(
+            setUser({
+              userId: res.data.result.userId,
+              token: res.data.result.token,
+            })
+          );
+          alert(res.data.message);
+          history.push("/");
+        } else {
+          alert(res.data.message);
+        }
       })
       .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        console.log(error, "에러확인");
       });
-    //악시오스
   };
 };
 
-const signupFB = (id, pwd) => {
+const signupDB = (id, pwd, pwd_check) => {
   return function (dispatch, getState, { history }) {
-    auth
-      .createUserWithEmailAndPassword(id, pwd)
-      .then((user) => {
-        console.log(user);
-        history.push("/");
+    const headers = {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    };
+    axios
+      .post(
+        "http://3.34.44.44/api/users/signUp",
+        {
+          userId: id,
+          password: pwd,
+          passwordConfirm: pwd_check,
+        },
+        { headers: headers }
+      )
+      .then((res) => {
+        // console.log(res, "회원가입res확인");
+
+        if (res.data.ok === true) {
+          // dispatch(
+          //   setUser({
+          //     userId: res.data.result.userId,
+          //     token: res.data.result.token,
+          //   })
+          // );
+          alert(res.data.message);
+          history.push("/");
+        } else {
+          alert(res.data.message);
+        }
       })
       .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        // ..
+        console.log(error.response, "에러에러");
+        if (error.response.data.ok === false) {
+          alert(error.response.data.message);
+        }
       });
-    //악시오스 여기서 씀
-    //악시오시에다가 사인업하는 주소를 넣는다
   };
 };
 
@@ -87,13 +109,14 @@ export default handleActions(
     //login&signup페이지 둘다에서 리덕스에 유저정보를 저장해야하기때문에 setuser로 이름을 통합하여 붙임
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        setCookie("is_login", "success"); //is_login 대신 토큰 들어가면 됨
+        // console.log("쿠키", action.payload.user.token);
+        localStorage.setItem("token", action.payload.user.token);
         draft.user = action.payload.user; //createAction을 쓰면 중간에 payload를 써주어야 값을 가져온다.
         draft.is_login = true;
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
-        deleteCookie("is_login");
+        localStorage.removeItem("token");
         draft.user = null;
         draft.is_login = false;
       }),
@@ -113,9 +136,8 @@ const actionCreators = {
   logOut,
   getUser,
   setUser,
-  //   loginAction,
-  signupFB,
-  loginFB,
+  signupDB,
+  loginDB,
 };
 
 export { actionCreators };

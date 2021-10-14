@@ -13,28 +13,28 @@ const Signup = (props) => {
   const [pwd_check, setPwdCheck] = React.useState("");
 
   const signup = () => {
-    if (id === "" || pwd === "") {
-      window.alert("아이디, 패스워드을 모두 입력해주세요!");
-      return;
-    }
+    // if (id === "" || pwd === "") {
+    //   window.alert("아이디, 패스워드을 모두 입력해주세요!");
+    //   return;
+    // }
 
-    if (pwd !== pwd_check) {
-      window.alert("패스워드와 패스워드 확인이 일치하지 않습니다!");
-      return;
-    }
+    // if (pwd !== pwd_check) {
+    //   window.alert("패스워드와 패스워드 확인이 일치하지 않습니다!");
+    //   return;
+    // }
 
-    dispatch(userActions.signupFB(id, pwd));
+    dispatch(userActions.signupDB(id, pwd, pwd_check));
   };
 
   return (
     <React.Fragment>
-      <Grid padding="16px">
+      <Grid padding="16px" width="50%" margin="auto">
         <Image src={MRL} />
-        <Text size="32px" bold>
+        <Text size="25px" bold margin="0">
           회원가입
         </Text>
 
-        <Grid padding="16px 0px">
+        <Grid padding="10px 0px">
           <Input
             label="아이디"
             placeholder="아이디를 입력해주세요."
@@ -44,7 +44,7 @@ const Signup = (props) => {
           />
         </Grid>
 
-        <Grid padding="16px 0px">
+        <Grid padding="10px 0px">
           <Input
             label="비밀번호"
             placeholder="비밀번호를 입력해주세요."
@@ -55,7 +55,7 @@ const Signup = (props) => {
           />
         </Grid>
 
-        <Grid padding="16px 0px">
+        <Grid padding="10px 0px">
           <Input
             label="비밀번호 확인"
             placeholder="비밀번호를 다시 입력해주세요."
@@ -67,14 +67,25 @@ const Signup = (props) => {
         </Grid>
 
         <Button
+          bg="black"
+          color="#FFFFFF"
+          margin="5px 0px"
           height="50px"
+          radius="0.4rem"
           _onClick={() => {
             signup();
           }}
         >
           회원가입하기
         </Button>
-        <Button height="50px" _onClick={() => {}}>
+        <Button
+          bg="black"
+          color="#FFFFFF"
+          margin="5px 0px"
+          height="50px"
+          radius="0.4rem"
+          _onClick={() => {}}
+        >
           취소
         </Button>
       </Grid>
@@ -87,8 +98,8 @@ const Image = styled.img`
   justify-content: center;
   align-items: center;
   margin: auto;
-  width: 30%;
-  height: 30%;
+  width: 40%;
+  height: 40%;
 `;
 
 Signup.defaultProps = {};
