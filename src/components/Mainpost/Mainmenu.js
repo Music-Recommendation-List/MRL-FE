@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '../elements';
+import { Grid } from '../../elements';
 import Button from '@material-ui/core/Button';
 
 const Mainmenu = (props) => {

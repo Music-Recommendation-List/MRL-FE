@@ -3,8 +3,8 @@ import React from 'react';
 import Grid from '../elements/Grid';
 import Text from '../elements/Text';
 
-import Mainmenu from '../components/Mainmenu';
-import MainPostList from '../components/MainPostList';
+import Mainmenu from '../components/Mainpost/Mainmenu';
+import MainPostList from '../components/Mainpost/MainPostList';
 
 const Main = (props) => {
   return (
