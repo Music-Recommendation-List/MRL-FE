@@ -25,7 +25,7 @@ const PostList = (props) => {
 
       <Grid flex wrap width="auto" margin=" 0px 0px 0px 200px ">
         { post_list.map((p, idx) => {
-          return <Card key={p.id} {...p} />;
+          return <Card key={p.postId} {...p} />;
         })}
       </Grid>
     </React.Fragment>

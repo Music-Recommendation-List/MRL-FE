@@ -6,14 +6,19 @@ import CommentList from "../components/PostDetail/CommentList";
 import { useParams } from "react-router-dom";
 import { actionCreators as postActions } from "../redux/modules/post";
 const PostDetail = (props) => {
-  const {id } = useParams();
+  const { id:postId }  = useParams();
+  console.log(useParams())
+  console.log(postId)
 
   const post_list = useSelector((state) => state.post.list);
   console.log(post_list);
 
   // id를 이용해서 상세 값 받아오기
-  let _post = post_list.find((p) => p.id === id)
-  console.log(_post)
+  let _post = post_list.find((p) =>  {
+    console.log(p.postId);
+    console.log(postId);
+     return p.postId == postId})
+    console.log(_post)
 
   return (
     <React.Fragment>

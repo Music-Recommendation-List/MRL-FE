@@ -21,9 +21,9 @@ const PostEdit = (props) => {
   const dispatch = useDispatch();
 
   const post_list = useSelector((state) => state.post.list);
-  // console.log(post_list);
-  let _post = post_list.find((p)=> p.id === id) // 상세페이지 데이터
-  // console.log(_post)
+  console.log(post_list);
+  let _post = post_list.find((p)=> p.postId == id) // 상세페이지 데이터
+  console.log(_post)
 
 
   //useState

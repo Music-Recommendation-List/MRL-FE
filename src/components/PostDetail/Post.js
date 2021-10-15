@@ -3,8 +3,8 @@ import { Text, Input, Image, Grid, Button, Upload } from '../../elements';
 import {history} from "../../redux/configureStore"
  
 const Post = (props) => {
-    
-    const {category1,category2,category3,desc,singer,url,userId,songName,id} = props._post
+    console.log("오류냐?",props)
+    const {category1,category2,category3,desc,singer,url,userId,songName,postId} = props._post
     
   return (
     <React.Fragment>
@@ -34,7 +34,7 @@ const Post = (props) => {
         <Grid end_flex margin="10px 0px 0px 0px">
           <Button width="auto" padding="20px" margin="10px 30px 0px 0px"
               _onClick={()=>{
-                history.push('/detail/'+ id +'/edit')
+                history.push('/detail/'+ postId +'/edit')
               }}
           >
             수정
