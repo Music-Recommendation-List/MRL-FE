@@ -132,9 +132,11 @@ const PostAdd = (props) => {
                   value={category1}
                   label="장르 :)"
                   help="장르를 선택해주세요!"
-                  list1="가요"
-                  list2="힙합"
-                  list3="발라드"
+                  list1="발라드"
+                  list2="댄스"
+                  list3="랩/힙합"
+                  list4="트로트"
+                  list5="인디음악"
                 />
               </Grid>
 
@@ -147,9 +149,11 @@ const PostAdd = (props) => {
                   value={category2}
                   label="기분 :)"
                   help="어울리는 기분을 선택해주세요!"
-                  list1="기쁨"
-                  list2="슬픔"
-                  list3="우울"
+                  list1="신나는"
+                  list2="슬픈/우울한"
+                  list3="기분전환"
+                  list4="설레는"
+                  list5="스트레스 풀 때"
                 />
               </Grid>
 
