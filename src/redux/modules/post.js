@@ -6,13 +6,13 @@ import axios from "axios";
 //액션타입
 const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";
-const DELETE_POST = "DELETE_POST"
+const DELETE_POST = "DELETE_POST";
 // const EDIT_POST_DETAIL = "EDIT_POST_DETAIL";
 
 //액션생성함수
 const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
 const addPost = createAction(ADD_POST, (post) => ({ post })); // addPost()에 넣을떄 뒤에 형태로 넣어야함
-const deletePost = createAction(DELETE_POST, (id) => ({id}))
+const deletePost = createAction(DELETE_POST, (id) => ({ id }));
 // const EditPostDetail = createAction(EDIT_POST_DETAIL, (id,data) => ({ id,data }));
 
 //초기값
@@ -40,7 +40,6 @@ const initialState = {
   ],
 };
 
-
 //전체 포스트 가져오기
 const getPostsDB = () => {
   return function (dispatch, getState, { history }) {
@@ -66,12 +65,12 @@ const getPostsDB = () => {
 // 포스트 추가하기
 const addPostDB = (data) => {
   return function (dispatch, getState, { history }) {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token");
     const headers = {
       //  'Content-Type': 'multipart/form-data',
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*", 
-      authorization : `Bearer ${token}`
+      "Access-Control-Allow-Origin": "*",
+      authorization: `Bearer ${token}`,
     };
 
     // console.log("진입", data);
@@ -90,22 +89,23 @@ const addPostDB = (data) => {
   };
 };
 
-
 // 포스트 디테일 수정하기
-const editPostDetailDB = (id,data) => {
+const editPostDetailDB = (id, data) => {
   return function (dispatch, getState, { history }) {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token");
     const headers = {
       //  'Content-Type': 'multipart/form-data',
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
-      authorization : `Bearer ${token}`
+      authorization: `Bearer ${token}`,
     };
     axios
-      .put(`http://3.34.44.44/api/posts/detail/${id}/edit`, data, { headers: headers }) 
+      .put(`http://3.34.44.44/api/posts/detail/${id}/edit`, data, {
+        headers: headers,
+      })
       .then((res) => {
-          alert(res.data.message)
-          history.push('/')
+        alert(res.data.message);
+        history.push("/");
       })
       .catch((err) => {
         console.log(err);
@@ -116,25 +116,28 @@ const editPostDetailDB = (id,data) => {
 //삭제하기
 const deletePostlDB = (id) => {
   return function (dispatch, getState, { history }) {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token");
     const headers = {
       //  'Content-Type': 'multipart/form-data',
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
-      authorization : `Bearer ${token}`
+      authorization: `Bearer ${token}`,
     };
     axios
-      .put(`http://3.34.44.44/api/posts/detail/${id}/edit`, {}, { headers: headers }) 
+      .put(
+        `http://3.34.44.44/api/posts/detail/${id}/edit`,
+        {},
+        { headers: headers }
+      )
       .then((res) => {
-          alert(res.data.result)
-          // history.push('/')
+        alert(res.data.result);
+        // history.push('/')
       })
       .catch((err) => {
         console.log(err);
       });
   };
 };
-
 
 //리듀서
 export default handleActions(
@@ -148,8 +151,6 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list.push(action.payload.post);
       }),
-
-
   },
   initialState
 );
@@ -159,11 +160,9 @@ const actionCreators = {
   setPost,
   addPost,
 
-
   addPostDB,
   getPostsDB,
   editPostDetailDB,
-
 };
 
 export { actionCreators };

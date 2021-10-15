@@ -40,12 +40,14 @@ const Card = (props) => {
               "http://img.youtube.com/vi/" + props.url.split("=")[1] + "/0.jpg"
             }
           />
-          <Text margin="30px 0px 0px 0px" is_main>
-            Singer - {singer}
+          <Text margin="10px 0px 0px 20px" bold>
+            Singer : {singer}
           </Text>
-          <Text is_main> title - {songName}</Text>
-          <Text size="20px" bold center>
-            #{category1}#{category2}#{category3}
+          <Text margin="10px 0px 0px 20px" bold>
+            title : {songName}
+          </Text>
+          <Text margin="10px 0px 20px 20px" size="20px" bold color="#868686">
+            #{category1} #{category2} #{category3}
           </Text>
         </Grid>
       </Grid>

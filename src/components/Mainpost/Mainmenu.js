@@ -11,6 +11,7 @@ export default function SelectAutoWidth() {
   const [category3, setCategory3] = React.useState("");
   const handleCategory1 = (event) => {
     setCategory1(event.target.value);
+    console.log(event.target.value);
   };
   const handleCategory2 = (event) => {
     setCategory2(event.target.value);

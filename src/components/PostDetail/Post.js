@@ -24,17 +24,26 @@ const Post = (props) => {
         </Text>
 
         <Grid is_flex>
-          <Grid bg="yellow">
-            <a href={props._post.url} target="_blank">
-              <Image
+          <Grid>
+            <iframe
+              width="640"
+              height="360"
+              src={`https://www.youtube.com/embed/${
+                props._post.url.split("=")[1]
+              }`}
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
+            {/* <a href={props._post.url} target="_blank"> */}
+            {/* <Image
                 shape="rectangle"
                 src={
                   "http://img.youtube.com/vi/" +
                   props._post.url.split("=")[1] +
                   "/0.jpg"
                 }
-              />
-            </a>
+              /> */}
+            {/* </a> */}
           </Grid>
           <Grid
             height="350px"
