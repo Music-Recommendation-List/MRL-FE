@@ -8,7 +8,7 @@ import PostAdd from "../pages/PostAdd";
 import PostList from "../pages/PostList";
 import LogIn from "../pages/LogIn";
 import SignUp from "../pages/SignUp";
-import Header from '../components/Header'
+import Header from "../components/Header";
 // 인덱스에 더 이상 브라우저라우터를 쓰지않고 provider를 써서 store주입 한다. (store에 createBrowsr history선언)
 // store에는
 import { ConnectedRouter } from "connected-react-router";

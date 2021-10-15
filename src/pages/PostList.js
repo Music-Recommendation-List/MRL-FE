@@ -22,9 +22,6 @@ const PostList = (props) => {
   return (
     <React.Fragment>
       <Mainmenu />
-      <Button _onClick={() => {
-        history.push('/addpost')
-      }}>추가하기</Button>
 
       <Grid flex wrap width="auto" margin=" 0px 0px 0px 200px ">
         { post_list.map((p, idx) => {

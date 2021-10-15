@@ -66,10 +66,12 @@ const getPostsDB = () => {
 // 포스트 추가하기
 const addPostDB = (data) => {
   return function (dispatch, getState, { history }) {
+    const token = localStorage.getItem('token')
     const headers = {
       //  'Content-Type': 'multipart/form-data',
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Origin": "*", 
+      authorization : `Bearer ${token}`
     };
 
     // console.log("진입", data);
