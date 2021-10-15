@@ -42,19 +42,20 @@ const initialState = {
 
 
 //전체 포스트 가져오기
-const getPostsDB = () => {
+const getPostsDB = (categoryData) => {
   return function (dispatch, getState, { history }) {
     const headers = {
       // 'Content-Type': 'multipart/form-data',
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
     };
-    // console.log("함수 진입");
+    console.log("함수 진입");
+    console.log(categoryData)
     axios
-      .post("http://3.34.44.44/api/posts", {}, { headers: headers })
+      .post("http://3.34.44.44/api/posts", categoryData, { headers: headers })
       .then((res) => {
-        // console.log("axios 연결", res);
-        // console.log("데이터의 정확한 값", res.data.result);
+        console.log("axios 연결", res);
+        console.log("데이터의 정확한 값", res.data.result);
         dispatch(setPost(res.data.result));
       })
       .catch((err) => {
@@ -123,14 +124,15 @@ const deletePostlDB = (id) => {
       "Access-Control-Allow-Origin": "*",
       authorization : `Bearer ${token}`
     };
-    axios
-      .put(`http://3.34.44.44/api/posts/detail/${id}/edit`, {}, { headers: headers }) 
+    axios     
+      .delete(`http://3.34.44.44/api/posts/detail/${id}/edit`, {headers: headers }) 
       .then((res) => {
-          alert(res.data.result)
-          // history.push('/')
+          alert(res.data.message)
+          history.push('/')
       })
       .catch((err) => {
-        console.log(err);
+            //오류시 err.response.data로 고정되어있는 것
+        console.log(err.response.data.message);
       });
   };
 };
@@ -163,6 +165,7 @@ const actionCreators = {
   addPostDB,
   getPostsDB,
   editPostDetailDB,
+  deletePostlDB,
 
 };
 

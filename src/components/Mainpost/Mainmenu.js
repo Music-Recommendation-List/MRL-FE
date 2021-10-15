@@ -5,19 +5,46 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
 import styled from "styled-components";
+
+import { actionCreators, actionCreators as postActions } from "../../redux/modules/post";
+import { useDispatch } from "react-redux";
+
 export default function SelectAutoWidth() {
+  const dispatch = useDispatch();
+
+  const pick_category = () => {
+    const categoryData = {};
+    if (category1 !== "전체") {
+      categoryData.category1 = category1;
+    }
+    if (category2 !== "전체") {
+      categoryData.category2 = category2;
+    }
+    if (category3 !== "전체") {
+      categoryData.category3 = category3;
+    }
+    console.log(categoryData);
+
+    dispatch(postActions.getPostsDB(categoryData));
+  };
+
+  //use state
   const [category1, setCategory1] = React.useState("");
   const [category2, setCategory2] = React.useState("");
   const [category3, setCategory3] = React.useState("");
+
   const handleCategory1 = (event) => {
     setCategory1(event.target.value);
   };
+
   const handleCategory2 = (event) => {
     setCategory2(event.target.value);
   };
+
   const handleCategory3 = (event) => {
     setCategory3(event.target.value);
   };
+
   return (
     <Box>
       <div>
@@ -31,14 +58,14 @@ export default function SelectAutoWidth() {
             autoWidth
             label="장르"
           >
-            <MenuItem value="">
-              <em>None</em>
+            <MenuItem value="전체">
+              <em>전체</em>
             </MenuItem>
-            <MenuItem value={1}>발라드</MenuItem>
-            <MenuItem value={2}>댄스</MenuItem>
-            <MenuItem value={3}>랩/힙합</MenuItem>
-            <MenuItem value={4}>트로트</MenuItem>
-            <MenuItem value={5}>인디음악</MenuItem>
+            <MenuItem value="발라드">발라드</MenuItem>
+            <MenuItem value="댄스">댄스</MenuItem>
+            <MenuItem value="랩/힙합">랩/힙합</MenuItem>
+            <MenuItem value="트로트">트로트</MenuItem>
+            <MenuItem value="인디음악">인디음악</MenuItem>
           </Select>
         </FormControl>
       </div>
@@ -53,14 +80,14 @@ export default function SelectAutoWidth() {
             autoWidth
             label="감성"
           >
-            <MenuItem value="">
-              <em>None</em>
+            <MenuItem value="전체">
+              <em>전체</em>
             </MenuItem>
-            <MenuItem value={6}>신나는</MenuItem>
-            <MenuItem value={7}>슬픈/우울한</MenuItem>
-            <MenuItem value={8}>기분전환</MenuItem>
-            <MenuItem value={9}>설레는</MenuItem>
-            <MenuItem value={10}>스트레스 풀 때</MenuItem>
+            <MenuItem value="신나는">신나는</MenuItem>
+            <MenuItem value="슬픈/우울한">슬픈/우울한</MenuItem>
+            <MenuItem value="기분전환">기분전환</MenuItem>
+            <MenuItem value="설레는">설레는</MenuItem>
+            <MenuItem value="스트레스 풀 때">스트레스 풀 때</MenuItem>
           </Select>
         </FormControl>
       </div>
@@ -75,18 +102,19 @@ export default function SelectAutoWidth() {
             autoWidth
             label="계절"
           >
-            <MenuItem value="">
-              <em>None</em>
+            <MenuItem value="전체">
+              <em>전체</em>
             </MenuItem>
-            <MenuItem value={11}>봄</MenuItem>
-            <MenuItem value={12}>여름</MenuItem>
-            <MenuItem value={13}>가을</MenuItem>
-            <MenuItem value={14}>겨울</MenuItem>
+            <MenuItem value="봄">봄</MenuItem>
+            <MenuItem value="여름">여름</MenuItem>
+            <MenuItem value="가을">가을</MenuItem>
+            <MenuItem value="겨울">겨울</MenuItem>
           </Select>
         </FormControl>
       </div>
       <Button
         variant="contained"
+        onClick={pick_category}
         style={{
           color: "#FFFFFF",
           fontWeight: "800",
@@ -95,6 +123,20 @@ export default function SelectAutoWidth() {
       >
         검색
       </Button>
+      <Button
+        variant="contained"
+        onClick={()=>{
+          dispatch(actionCreators.getPostsDB())
+        }}
+        style={{
+          color: "#FFFFFF",
+          fontWeight: "800",
+          backgroundColor: "black",
+        }}
+      >
+        초기화
+      </Button>
+
     </Box>
   );
 }

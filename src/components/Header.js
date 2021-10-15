@@ -5,6 +5,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import mini_mrl from "../../src/mini_mrl.png";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
+import { actionCreators } from "../redux/modules/post";
 const Header = (props) => {
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
@@ -32,8 +33,9 @@ const Header = (props) => {
                 MRL
               </Text>
             </Grid>
-            <Grid is_flex width="35%">
+            <Grid is_flex width="auto">
               <Button
+                width="150px"
                 bg="black"
                 color="#FFFFFF"
                 margin="0px 5px"
@@ -45,16 +47,9 @@ const Header = (props) => {
               >
                 작성
               </Button>
+
               <Button
-                bg="black"
-                color="#FFFFFF"
-                margin="0px 5px"
-                height="40px"
-                radius="0.4rem"
-              >
-                알림
-              </Button>
-              <Button
+                width="150px"
                 bg="black"
                 color="#FFFFFF"
                 margin="0px 5px"

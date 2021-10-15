@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { useSelector } from "react-redux";
+import { history } from "../redux/configureStore";
 import {
   Text,
   Input,
@@ -19,6 +20,8 @@ import {
 const PostEdit = (props) => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  console.log(id)
+  console.log(useParams())
 
   const post_list = useSelector((state) => state.post.list);
   console.log(post_list);
@@ -30,7 +33,7 @@ const PostEdit = (props) => {
   const [singer, setSinger] = React.useState(_post ? _post.singer:"");
   const [songName, setSongName] = React.useState(_post ? _post.songName:"");
   const [desc, setDesc] = React.useState(_post ? _post.desc:"");
-  const [url, setUrl] = React.useState(_post ? _post.desc:"");
+  const [url, setUrl] = React.useState(_post ? _post.url:"");
   const [category1, setCategory1] = React.useState(_post ? _post.category1:"");
   const [category2, setCategory2] = React.useState(_post ? _post.category2:"");
   const [category3, setCategory3] = React.useState(_post ? _post.category3:"");
@@ -192,7 +195,14 @@ const PostEdit = (props) => {
               >
                 저장
               </Button>
-              <Button width="80px" padding="20px" margin="10px 10px 0px 10px">
+              <Button 
+              width="80px" 
+              padding="20px"
+               margin="10px 10px 0px 10px"
+               _onClick={()=>{
+                 history.push('/')
+               }}
+               >
                 취소
               </Button>
             </Grid>
