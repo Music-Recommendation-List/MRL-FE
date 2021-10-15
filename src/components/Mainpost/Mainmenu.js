@@ -5,6 +5,9 @@ import MenuItem from "@mui/material/MenuItem";
 import styled from "styled-components";
 
 export default function BasicMenu() {
+  //use State 데이터 관리하는 것
+  // const [category1, setCategory]
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {

@@ -43,6 +43,9 @@ const Header = (props) => {
                 margin="0px 5px"
                 height="40px"
                 radius="0.4rem"
+                _onClick={() => {
+                  history.push("/addpost");
+                }}
               >
                 작성
               </Button>
