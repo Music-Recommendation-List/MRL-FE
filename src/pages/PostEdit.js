@@ -15,36 +15,26 @@ import {
   DropDown2,
 } from "../elements";
 
+
 const PostEdit = (props) => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const content = useSelector((state) => state.post.list);
-  // console.log(content);
 
-  
+  const post_list = useSelector((state) => state.post.list);
+  // console.log(post_list);
+  let _post = post_list.find((p)=> p.id === id) // 상세페이지 데이터
+  // console.log(_post)
 
-  React.useEffect(() => {
-    dispatch(postActions.getEditPostDetailDB(id));
-
-    setSinger(content.singer);
-    setSongName(content.songName);
-    setDesc(content.desc);
-    setUrl(content.url);
-    setCategory1(content.category1);
-    setCategory2(content.category2);
-    setCategory3(content.category3);
-  }, []);
 
   //useState
-  
+  const [singer, setSinger] = React.useState(_post ? _post.singer:"");
+  const [songName, setSongName] = React.useState(_post ? _post.songName:"");
+  const [desc, setDesc] = React.useState(_post ? _post.desc:"");
+  const [url, setUrl] = React.useState(_post ? _post.desc:"");
+  const [category1, setCategory1] = React.useState(_post ? _post.category1:"");
+  const [category2, setCategory2] = React.useState(_post ? _post.category2:"");
+  const [category3, setCategory3] = React.useState(_post ? _post.category3:"");
 
-  const [singer, setSinger] = React.useState("");
-  const [songName, setSongName] = React.useState("");
-  const [desc, setDesc] = React.useState("");
-  const [url, setUrl] = React.useState("");
-  const [category1, setCategory1] = React.useState("");
-  const [category2, setCategory2] = React.useState("");
-  const [category3, setCategory3] = React.useState("");
 
   // change함수
   const changeSinger = (e) => {
@@ -72,7 +62,8 @@ const PostEdit = (props) => {
   const selectSeason = (e) => {
     setCategory3(e.target.value);
   };
-
+ 
+  // 입력받은 값
   const data = {
     singer: singer,
     songName: songName,
@@ -86,7 +77,6 @@ const PostEdit = (props) => {
   // 리덕스 전송
   const re_save = () => {
     dispatch(userActions.editPostDetailDB(id,data));
-    // console.log(data);
   };
 
   return (

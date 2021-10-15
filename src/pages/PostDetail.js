@@ -6,19 +6,18 @@ import CommentList from "../components/PostDetail/CommentList";
 import { useParams } from "react-router-dom";
 import { actionCreators as postActions } from "../redux/modules/post";
 const PostDetail = (props) => {
-  const dispatch = useDispatch();
-  const { id } = useParams();
+  const {id } = useParams();
 
-  const data = useSelector((state) => state.post.list);
-  // console.log(data);
+  const post_list = useSelector((state) => state.post.list);
+  console.log(post_list);
 
-  React.useEffect(() => {
-    dispatch(postActions.getPostDetailDB(id));
-  }, []);
+  // id를 이용해서 상세 값 받아오기
+  let _post = post_list.find((p) => p.id === id)
+  console.log(_post)
 
   return (
     <React.Fragment>
-      <Post data={data} />
+      <Post _post={_post} />
       <CommentWrite />
       <CommentList />
     </React.Fragment>

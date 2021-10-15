@@ -11,8 +11,8 @@ import {
 import { history } from "../redux/configureStore";
 
 const Card = (props) => {
-  console.log("리덕스 초기값", props);
-  const { id, singer, songName, desc, url, category1, category2, category3 } = props;
+  // console.log("리덕스 초기값", props);
+  const { id, singer, songName, desc, url, category1, category2, category3 } = props
 
   
   return (

@@ -6,16 +6,14 @@ import axios from "axios";
 //액션타입
 const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";
-const DETAIL_POST = "DETAIL_POST";
-const DETAIL_EDIT_POST = "DETAIL_EDIT_POST";
-const EDIT_POST_DETAIL = "EDIT_POST_DETAIL";
+const DELETE_POST = "DELETE_POST"
+// const EDIT_POST_DETAIL = "EDIT_POST_DETAIL";
 
 //액션생성함수
 const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
 const addPost = createAction(ADD_POST, (post) => ({ post })); // addPost()에 넣을떄 뒤에 형태로 넣어야함
-const getPostDetail = createAction(DETAIL_POST, (data) => ({ data }));
-const getEditPostDetail = createAction(DETAIL_EDIT_POST, (data) => ({ data }));
-const EditPostDetail = createAction(EDIT_POST_DETAIL, (data) => ({ data }));
+const deletePost = createAction(DELETE_POST, (id) => ({id}))
+// const EditPostDetail = createAction(EDIT_POST_DETAIL, (id,data) => ({ id,data }));
 
 //초기값
 const initialState = {
@@ -42,20 +40,6 @@ const initialState = {
   ],
 };
 
-// const initialPost = {
-//   user_info: {
-//     id: 0,
-//     user_name: "gcee",
-//   },
-
-//   contents1: "장르",
-//   contents2: "기분",
-//   contents3: "계절",
-
-//   singer: "김법수",
-//   music_name: "보고싶다",
-//   youtube_url: "",
-// };
 
 //전체 포스트 가져오기
 const getPostsDB = () => {
@@ -104,46 +88,6 @@ const addPostDB = (data) => {
   };
 };
 
-// 포스트 상세디테일 가져오기
-
-const getPostDetailDB = (id) => {
-  return function (dispatch, getState, { history }) {
-    const headers = {
-      //  'Content-Type': 'multipart/form-data',
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    };
-    axios
-      .get(`http://3.34.44.44/api/posts/detail/${id}`, {}, { headers: headers })
-      .then((res) => {
-        dispatch(getPostDetail(res.data.result));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-};
-
-// 포스트 수정디테일 가져오기
-
-const getEditPostDetailDB = (id) => {
-  return function (dispatch, getState, { history }) {
-    const headers = {
-      //  'Content-Type': 'multipart/form-data',
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    };
-    axios
-      .get(`http://3.34.44.44/api/posts/detail/${id}`, {}, { headers: headers }) //api 디테일가져오기랑 동일하게사용
-      .then((res) => {
-          // console.log(res.data.result)
-        dispatch(getEditPostDetail(res.data.result)); 
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-};
 
 // 포스트 디테일 수정하기
 const editPostDetailDB = (id,data) => {
@@ -159,7 +103,6 @@ const editPostDetailDB = (id,data) => {
       .put(`http://3.34.44.44/api/posts/detail/${id}/edit`, data, { headers: headers }) 
       .then((res) => {
           alert(res.data.message)
-          dispatch(EditPostDetail(res.data.result))
           history.push('/')
       })
       .catch((err) => {
@@ -167,6 +110,29 @@ const editPostDetailDB = (id,data) => {
       });
   };
 };
+
+//삭제하기
+const deletePostlDB = (id) => {
+  return function (dispatch, getState, { history }) {
+    const token = localStorage.getItem('token')
+    const headers = {
+      //  'Content-Type': 'multipart/form-data',
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      authorization : `Bearer ${token}`
+    };
+    axios
+      .put(`http://3.34.44.44/api/posts/detail/${id}/edit`, {}, { headers: headers }) 
+      .then((res) => {
+          alert(res.data.result)
+          // history.push('/')
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 
 //리듀서
 export default handleActions(
@@ -180,16 +146,6 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list.push(action.payload.post);
       }),
-    [DETAIL_POST]: (state, action) => produce(state, (draft) => {
-      draft.list = action.payload.data
-    }),
-    [DETAIL_EDIT_POST]: (state, action) => produce(state, (draft) => {
-      draft.list = action.payload.data
-    }),
-
-    [EDIT_POST_DETAIL]: (state, action) => produce(state, (draft) => {
-      draft.list = action.payload.data
-    }),
 
 
   },
@@ -200,12 +156,10 @@ export default handleActions(
 const actionCreators = {
   setPost,
   addPost,
-  getPostDetail,
+
 
   addPostDB,
   getPostsDB,
-  getPostDetailDB,
-  getEditPostDetailDB,
   editPostDetailDB,
 
 };

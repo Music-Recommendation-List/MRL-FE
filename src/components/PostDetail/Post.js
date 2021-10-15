@@ -4,7 +4,7 @@ import {history} from "../../redux/configureStore"
  
 const Post = (props) => {
     
-    const {category1,category2,category3,desc,singer,url,userId,songName,id} = props.data
+    const {category1,category2,category3,desc,singer,url,userId,songName,id} = props._post
     
   return (
     <React.Fragment>
