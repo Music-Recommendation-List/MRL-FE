@@ -24,6 +24,24 @@ const initialState = {
 };
 
 //middleware
+const getUserDB = () => {
+  return function (dispatch, getState, { history }) {
+    const headers = {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    };
+    dispatch(getUser());
+    // axios
+    //   .get("http://3.34.44.44/api/users/logIn", { headers: headers })
+    //   .then((res) => {
+    //     // console.log(res, "res확인");
+    //   })
+    //   .catch((error) => {
+    //     console.log(error, "에러확인");
+    //   });
+  };
+};
+
 const loginDB = (id, pwd) => {
   return function (dispatch, getState, { history }) {
     const headers = {
@@ -104,6 +122,7 @@ export default handleActions(
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         // console.log("쿠키", action.payload.user.token);
+        console.log("확인용!", action.payload);
         localStorage.setItem("token", action.payload.user.token);
         draft.user = action.payload.user; //createAction을 쓰면 중간에 payload를 써주어야 값을 가져온다.
         draft.is_login = true;
@@ -114,7 +133,17 @@ export default handleActions(
         draft.user = null;
         draft.is_login = false;
       }),
-    [GET_USER]: (state, action) => produce(state, (draft) => {}),
+    [GET_USER]: (state, action) =>
+      produce(state, (draft) => {
+        // console.log(localStorage.getItem("token"), "이게 토큰확인");
+        if (localStorage.getItem("token")) {
+          console.log("토큰있음");
+          draft.is_login = true;
+        } else {
+          console.log("토큰없음");
+          draft.is_login = false;
+        }
+      }),
   },
   initialState
 );
@@ -132,6 +161,7 @@ const actionCreators = {
   setUser,
   signupDB,
   loginDB,
+  getUserDB,
 };
 
 export { actionCreators };

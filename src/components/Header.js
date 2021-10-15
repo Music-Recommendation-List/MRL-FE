@@ -11,7 +11,9 @@ const Header = (props) => {
 
   const is_login = useSelector((state) => state.user.is_login);
 
-  if (is_login) {
+  const is_token = window.localStorage.getItem("token") ? true : false;
+
+  if (is_login && is_token) {
     return (
       <>
         <Grid is_flex>
@@ -75,6 +77,7 @@ const Header = (props) => {
   }
   return (
     <>
+      {history.push("/")}
       <Grid is_flex>
         <Grid is_flex padding="4px 25px 4px 0px">
           <Image

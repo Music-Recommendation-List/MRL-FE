@@ -13,8 +13,13 @@ import Header from "../components/Header";
 // store에는
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 function App() {
+  const dispatch = useDispatch();
+  dispatch(userActions.getUserDB());
+
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
