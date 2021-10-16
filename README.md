@@ -1,13 +1,13 @@
 # MRL(Music Recommended List) 프론트엔드
 
-![image](/app/public/images/thumbnail.png)
+![image](/public/images/thumbnail.png)
 
 ## 📰 상세 페이지
 
-![image](/app/public/images/1.png)
-![image](/app/public/images/2.png)
-![image](/app/public/images/3.png)
-![image](/app/public/images/4.png)
+![image](/public/images/1.png)
+![image](/public/images/2.png)
+![image](/public/images/3.png)
+![image](/public/images/4.png)
 
 ## 💻 웹 사이트
 
