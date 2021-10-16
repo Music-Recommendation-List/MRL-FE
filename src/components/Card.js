@@ -35,7 +35,7 @@ const Card = (props) => {
           padding="0px"
         >
           <Image
-            radius="0.5rme"
+            
             shape="rectangle"
             src={
               "http://img.youtube.com/vi/" + props.url.split("=")[1] + "/0.jpg"

@@ -3,6 +3,13 @@ import React from "react";
 import { Text, Input, Image, Grid, Button, Upload } from "../../elements";
 
 const CommentWrite = (props) => {
+
+  const [comment, setComment] = React.useState();
+
+  const save = () =>{
+      dispatchEvent()
+  }
+
   return (
     <React.Fragment>
       <Grid width="50vw" margin="0px auto">
@@ -12,7 +19,11 @@ const CommentWrite = (props) => {
         </Text>
         <Grid is_flex>
           <Input placeholder="댓글 내용을 입력해주세요 :)" />
-          <Button width="65px" padding="18px" margin="0px 0px 0px 15px">
+          <Button width="65px" 
+          padding="18px" 
+          margin="0px 0px 0px 15px"
+          
+          >
             작성
           </Button>
         </Grid>
