@@ -1,8 +1,12 @@
 import React from "react";
-import { Text, Input, Image, Grid, Button, Upload } from "../../elements";
+import { Text, Input, Image, Grid, Upload } from "../../elements";
 import { history } from "../../redux/configureStore";
 import { actionCreators as postActions } from "../../redux/modules/post";
 import { useDispatch } from "react-redux";
+import styled from 'styled-components';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+
 
 const Post = (props) => {
   const dispatch = useDispatch();
@@ -25,86 +29,90 @@ const Post = (props) => {
 
   return (
     <React.Fragment>
-      <Grid width="50vw" margin="50px auto 20px">
-        <Text margin="20px 0px" size="36px" bold center>
-          상세페이지
-        </Text>
-
-        <Grid is_flex>
-          <Grid>
-            <iframe
-              width="100%"
-              height="360px" 
-              src={`https://www.youtube.com/embed/${
-                props._post.url.split("=")[1]
-              }`}
-              frameborder="0"
-              allowfullscreen
-            ></iframe>
-          </Grid>
-          <Grid
-            height="350px"
-            border
-            margin="0px 0px 0px 20px"
-            padding="10px 15px"
-            overflow
-          >
-            <Text margin="0 0 15px 0px" size="16px" bold right>
-              작성자 : {userId}{" "}
-            </Text>
-            <Text margin="10px 0 20px 0px" bold>
-              가수이름 : {singer}{" "}
-            </Text>
-            <Text margin="10px 0 20px 0px" bold>
-              곡 이름: {songName}{" "}
-            </Text>
-            <Text margin="0 0 20px 0px" bold>
-              곡 설명 : {desc}{" "}
-            </Text>
-            <Text margin="0 0 20px 0px" bold>
-              {" "}
-              유튜브 링크 : {" "}
-              <a href={url} target="_blank">
-                {url}{" "}
-              </a>
-            </Text>
-            <Text margin="0 0 20px 0px" bold>
-              #{category1} #{category2} #{category3}
-            </Text>
-            <Text margin="0 0 20px 0px"></Text>
-            <Text margin="0 0 20px 0px"></Text>
-          </Grid>
+    <Grid width="50vw" margin=" auto ">
+      <Text margin="0px" size="36px" bold center></Text>
+      <Grid is_flex>
+        <Grid>
+          <iframe
+            border-radius="5px"
+            width="100%"
+            height="360px"
+            src={`https://www.youtube.com/embed/${
+              props._post.url.split('=')[1]
+            }`}
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
         </Grid>
-
-        <Grid end_flex margin="10px 0px 0px 0px">
-          <Button
-            width="auto"
-            padding="20px"
-            margin="10px 30px 0px 0px"
-            _onClick={() => {
-              history.push("/detail/" + postId + "/edit");
-            }}
-          >
-            수정
-          </Button>
-          <Button
-            width="auto"
-            padding="20px"
-            margin="10px 30px 0px 0px"
-            _onClick={() => {
-              delete_post();
-            }}
-          >
-            삭제
-          </Button>
-          <Button width="auto" padding="20px" margin="10px 30px 0px 0px">
-            취소
-          </Button>
+        <Grid
+          bg="#2D2D2D"
+          width="450px"
+          height="360px"
+          border
+          margin="0 0 0 20px"
+          padding="10px 15px"
+          overflow
+        >
+          <Text color="white" margin="0 0 15px 0px" size="16px" bold right>
+            작성자 : {userId}{' '}
+          </Text>
+          <Text color="white" margin="10px 0 20px 0px" bold>
+            가수이름 : {singer}{' '}
+          </Text>
+          <Text color="white" margin="10px 0 20px 0px" bold>
+            곡 이름 : {songName}{' '}
+          </Text>
+          <Text color="white" size="15px" margin="0 0 20px 0px" bold>
+            곡 설명 : {desc}{' '}
+          </Text>
+          <Text color="white" size="17px" margin="0 0 20px 0px" bold>
+            {' '}
+            유튜브 링크 :{' '}
+            <Link alink="darkgreen" href={url} target="_blank">
+              {url}{' '}
+            </Link>
+          </Text>
+          <Text color="white" size="15px" margin="0 0 20px 0px" bold center>
+            #{category1} #{category2} #{category3}
+          </Text>
         </Grid>
       </Grid>
-    </React.Fragment>
-  );
+
+      
+      <Grid bg="white" margin="30px 0 0 0" end_flex margin="auto">
+        <Button
+
+          display="block"
+          width="auto"
+          padding="20px"
+          margin="10px 30px 0px 0px"
+          onClick={() => {
+            history.push('/detail/' + postId + '/edit');
+          }}
+        >
+          수정
+        </Button>
+        <Button
+          display="block"
+          width="auto"
+          padding="20px"
+          margin="10px 30px 0px 0px"
+          onClick={() => {
+            delete_post();
+          }}
+        >
+          삭제
+        </Button>
+
+      </Grid>
+    </Grid>
+  </React.Fragment>
+);
 };
+const Link = styled.a`
+text-decoration: none;
+color: royalblue;
+`;
 
 // Post.defaultProps = {
 

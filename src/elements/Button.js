@@ -1,11 +1,23 @@
 import React from "react";
 import styled from "styled-components";
-
 const Button = (props) => {
-  const { _onClick, children, margin, width, height, padding, bg, color, radius, shadow, size, cursor, } = props;
-
+  const {
+    _onClick,
+    children,
+    margin,
+    width,
+    height,
+    padding,
+    bg,
+    color,
+    radius,
+    shadow,
+    size,
+    cursor,
+    bold,
+    font,
+  } = props;
   const styles = {
-
     margin: margin,
     width: width,
     height: height,
@@ -16,17 +28,19 @@ const Button = (props) => {
     shadow: shadow,
     size: size,
     cursor: cursor,
+    bold: bold,
+    font: font,
   };
-
   return (
     <React.Fragment>
-      <ElButton {...styles} onClick={_onClick}>{children}</ElButton>
+      <ElButton {...styles} onClick={_onClick}>
+        {children}
+      </ElButton>
     </React.Fragment>
   );
 };
-
 Button.defaultProps = {
-  button_name:false,
+  button_name: false,
   children: null,
   _onClick: () => {},
   margin: false,
@@ -39,23 +53,24 @@ Button.defaultProps = {
   radius: "",
   shadow: false,
   cursor: "",
+  bold: false,
+  font: false,
 };
-
 const ElButton = styled.button`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-  ${(props) => (props.size? `font-size: ${props.size}` : "")}
+  font-weight: ${(props) => (props.bold ? "600" : "400")};
+  ${(props) => (props.size ? `font-size: ${props.size}` : "")}
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
   ${(props) => (props.color ? `color: ${props.color};` : "")}
   box-sizing: border-box;
   border: none;
-  ${(props) => (props.radius? `border-radius: ${props.radius};` : "")}
+  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")}
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
-  ${(props) => (props.shadow ? `box-shadow: 0.5rem 0.5rem 0.5rem #dcdde1;` : "")}
-  ${(props) => (props.cursor? `cursor: pointer;`: '')};
-
+  ${(props) =>
+    props.shadow ? `box-shadow: 0.5rem 0.5rem 0.5rem #DCDDE1;` : ""}
+  ${(props) => (props.cursor ? `cursor: pointer;` : "")};
+  font-family: ${(props) => (props.font ? "Cafe24SsurroundAir" : "")};
 `;
-
-
 export default Button;

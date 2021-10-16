@@ -5,45 +5,44 @@ import { useParams } from "react-router-dom";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
+import Button from '@mui/material/Button';
 import {
   Text,
   Input,
   Image,
   Grid,
-  Button,
+  
   Upload,
   DropDown,
   DropDown2,
 } from "../elements";
-
-
 const PostEdit = (props) => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  console.log(id)
-  console.log(useParams())
-
+  console.log(id);
+  console.log(useParams());
   const post_list = useSelector((state) => state.post.list);
   console.log(post_list);
-  let _post = post_list.find((p)=> p.postId == id) // 상세페이지 데이터
-  console.log(_post)
-
-
+  let _post = post_list.find((p) => p.postId == id); // 상세페이지 데이터
+  console.log(_post);
   //useState
-  const [singer, setSinger] = React.useState(_post ? _post.singer:"");
-  const [songName, setSongName] = React.useState(_post ? _post.songName:"");
-  const [desc, setDesc] = React.useState(_post ? _post.desc:"");
-  const [url, setUrl] = React.useState(_post ? _post.url:"");
-  const [category1, setCategory1] = React.useState(_post ? _post.category1:"");
-  const [category2, setCategory2] = React.useState(_post ? _post.category2:"");
-  const [category3, setCategory3] = React.useState(_post ? _post.category3:"");
-
-
+  const [singer, setSinger] = React.useState(_post ? _post.singer : "");
+  const [songName, setSongName] = React.useState(_post ? _post.songName : "");
+  const [desc, setDesc] = React.useState(_post ? _post.desc : "");
+  const [url, setUrl] = React.useState(_post ? _post.url : "");
+  const [category1, setCategory1] = React.useState(
+    _post ? _post.category1 : ""
+  );
+  const [category2, setCategory2] = React.useState(
+    _post ? _post.category2 : ""
+  );
+  const [category3, setCategory3] = React.useState(
+    _post ? _post.category3 : ""
+  );
   // change함수
   const changeSinger = (e) => {
     setSinger(e.target.value);
   };
-
   const changeSongName = (e) => {
     setSongName(e.target.value);
   };
@@ -53,19 +52,15 @@ const PostEdit = (props) => {
   const changeUrl = (e) => {
     setUrl(e.target.value);
   };
-
   const selectGenre = (e) => {
     setCategory1(e.target.value);
   };
-
   const selectFeeling = (e) => {
     setCategory2(e.target.value);
   };
-
   const selectSeason = (e) => {
     setCategory3(e.target.value);
   };
- 
   // 입력받은 값
   const data = {
     singer: singer,
@@ -76,12 +71,10 @@ const PostEdit = (props) => {
     category2: category2,
     category3: category3,
   };
-
   // 리덕스 전송
   const re_save = () => {
-    dispatch(userActions.editPostDetailDB(id,data));
+    dispatch(userActions.editPostDetailDB(id, data));
   };
-
   return (
     <React.Fragment>
       <Grid>
@@ -92,7 +85,6 @@ const PostEdit = (props) => {
                 포스트 수정
               </Text>
             </Grid>
-
             <Grid is_flex>
               <Text size="20px" width="140px">
                 가수이름
@@ -103,7 +95,6 @@ const PostEdit = (props) => {
                 placeholder="가수 이름을 입력해주세요:)"
               ></Input>
             </Grid>
-
             <Grid is_flex>
               <Text size="20px" width="140px">
                 곡 이름
@@ -114,7 +105,6 @@ const PostEdit = (props) => {
                 placeholder="곡 이름을 입력해주세요:)"
               ></Input>
             </Grid>
-
             <Grid is_flex>
               <Text size="20px" width="140px">
                 곡 설명
@@ -125,7 +115,6 @@ const PostEdit = (props) => {
                 placeholder="곡 설명을 입력해주세요:)"
               ></Input>
             </Grid>
-
             <Grid is_flex>
               <Text size="20px" width="140px">
                 유튜브링크
@@ -136,7 +125,6 @@ const PostEdit = (props) => {
                 placeholder="유튜브 링크를 입력해주세요:)"
               ></Input>
             </Grid>
-
             <Grid margin="20px 0px">
               <Grid flex>
                 <Text center size="20px" width="70px" margin="6px 32px 0px 0px">
@@ -147,12 +135,13 @@ const PostEdit = (props) => {
                   value={category1}
                   label="장르 :)"
                   help="장르를 선택해주세요!"
-                  list1="가요"
-                  list2="힙합"
-                  list3="발라드"
+                  list1="발라드"
+                  list2="댄스"
+                  list3="랩/힙합"
+                  list4="트로트"
+                  list5="인디음악"
                 />
               </Grid>
-
               <Grid flex>
                 <Text center size="20px" width="70px" margin="6px 32px 0px 0px">
                   감성
@@ -162,17 +151,17 @@ const PostEdit = (props) => {
                   value={category2}
                   label="기분 :)"
                   help="어울리는 기분을 선택해주세요!"
-                  list1="기쁨"
-                  list2="슬픔"
-                  list3="우울"
+                  list1="신나는"
+                  list2="슬픈/우울한"
+                  list3="기분전환"
+                  list4="설레는"
+                  list5="스트레스 풀 때"
                 />
               </Grid>
-
               <Grid flex>
                 <Text center size="20px" width="70px" margin="6px 32px 0px 0px">
                   계절
                 </Text>
-
                 <DropDown2
                   _onChange={selectSeason}
                   value={category3}
@@ -185,24 +174,23 @@ const PostEdit = (props) => {
                 />
               </Grid>
             </Grid>
-
             <Grid end_flex margin="0px 0px 10px 0px">
               <Button
                 width="80px"
                 padding="20px"
                 margin="10px 0px 0px 30px"
-                _onClick={re_save}
+               onClick={re_save}
               >
                 저장
               </Button>
-              <Button 
-              width="80px" 
-              padding="20px"
-               margin="10px 10px 0px 10px"
-               _onClick={()=>{
-                 history.push('/')
-               }}
-               >
+              <Button
+                width="80px"
+                padding="20px"
+                margin="10px 10px 0px 10px"
+                onClick={() => {
+                  history.push("/");
+                }}
+              >
                 취소
               </Button>
             </Grid>
@@ -212,5 +200,4 @@ const PostEdit = (props) => {
     </React.Fragment>
   );
 };
-
 export default PostEdit;

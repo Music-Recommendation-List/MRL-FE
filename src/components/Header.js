@@ -35,6 +35,8 @@ const Header = (props) => {
             </Grid>
             <Grid is_flex width="auto">
               <Button
+                bold
+                font
                 width="150px"
                 bg="black"
                 color="#FFFFFF"
@@ -49,6 +51,8 @@ const Header = (props) => {
               </Button>
 
               <Button
+                bold
+                font
                 width="150px"
                 bg="black"
                 color="#FFFFFF"
@@ -95,6 +99,8 @@ const Header = (props) => {
         </Grid>
         <Grid is_flex width="20%" margin="0px 20px 0px 0px">
           <Button
+            bold
+            font
             bg="black"
             color="#FFFFFF"
             margin="0px 5px"
@@ -107,6 +113,8 @@ const Header = (props) => {
             로그인
           </Button>
           <Button
+            bold
+            font
             bg="black"
             color="#FFFFFF"
             margin="0px 5px"

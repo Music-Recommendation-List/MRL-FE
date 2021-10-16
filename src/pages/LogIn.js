@@ -3,19 +3,15 @@ import styled from "styled-components";
 import { Text, Input, Grid, Button } from "../elements";
 import MRL from "../MRL.png";
 import { useHistory } from "react-router-dom";
-
 //1. ation 불러다 사용하기
 import { useDispatch } from "react-redux";
 // 4. 디스패치 안에 넣을 액션생성함수 가져오기
 import { actionCreators as userActions } from "../redux/modules/user";
-
 const LogIn = (props) => {
   //2. 디스패치 만들기
   const dispatch = useDispatch();
-
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
-
   //3. login함수에 디스패치 넣기 dispatch()
   const login = () => {
     if (id === "" || pwd === "") {
@@ -25,10 +21,8 @@ const LogIn = (props) => {
     //5. 디스패치안에 액션생성함수 넣기
     dispatch(userActions.loginDB(id, pwd));
   };
-
   //나중에 리덕스사용시 제거
   let history = useHistory();
-
   return (
     <React.Fragment>
       <Grid padding="16px" width="50%" margin="auto">
@@ -58,6 +52,8 @@ const LogIn = (props) => {
           />
         </Grid>
         <Button
+          font
+          bold
           bg="black"
           color="#FFFFFF"
           margin="5px 0px"
@@ -71,6 +67,8 @@ const LogIn = (props) => {
           로그인
         </Button>
         <Button
+          font
+          bold
           bg="black"
           color="#FFFFFF"
           margin="5px 0px"
@@ -86,7 +84,6 @@ const LogIn = (props) => {
     </React.Fragment>
   );
 };
-
 const Image = styled.img`
   display: flex;
   justify-content: center;
@@ -95,5 +92,4 @@ const Image = styled.img`
   width: 40%;
   height: 40%;
 `;
-
 export default LogIn;

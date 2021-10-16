@@ -4,18 +4,15 @@ import { Grid, Text, Input, Button } from "../elements";
 import MRL from "../MRL.png";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-
+import { history } from "../redux/configureStore";
 const Signup = (props) => {
   const dispatch = useDispatch();
-
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
   const [pwd_check, setPwdCheck] = React.useState("");
-
   const signup = () => {
     dispatch(userActions.signupDB(id, pwd, pwd_check));
   };
-
   return (
     <React.Fragment>
       <Grid padding="16px" width="50%" margin="auto">
@@ -23,7 +20,6 @@ const Signup = (props) => {
         <Text size="25px" bold margin="0">
           회원가입
         </Text>
-
         <Grid padding="10px 0px">
           <Input
             label="아이디"
@@ -34,7 +30,6 @@ const Signup = (props) => {
             }}
           />
         </Grid>
-
         <Grid padding="10px 0px">
           <Input
             label="비밀번호"
@@ -46,7 +41,6 @@ const Signup = (props) => {
             }}
           />
         </Grid>
-
         <Grid padding="10px 0px">
           <Input
             label="비밀번호 확인"
@@ -58,8 +52,9 @@ const Signup = (props) => {
             }}
           />
         </Grid>
-
         <Button
+          font
+          bold
           bg="black"
           color="#FFFFFF"
           margin="5px 0px"
@@ -72,12 +67,16 @@ const Signup = (props) => {
           회원가입하기
         </Button>
         <Button
+          font
+          bold
           bg="black"
           color="#FFFFFF"
           margin="5px 0px"
           height="50px"
           radius="0.4rem"
-          _onClick={() => { }}
+          _onClick={() => {
+            history.push('/')
+          }}
         >
           취소
         </Button>
@@ -85,7 +84,6 @@ const Signup = (props) => {
     </React.Fragment>
   );
 };
-
 const Image = styled.img`
   display: flex;
   justify-content: center;
@@ -94,7 +92,5 @@ const Image = styled.img`
   width: 40%;
   height: 40%;
 `;
-
 Signup.defaultProps = {};
-
 export default Signup;

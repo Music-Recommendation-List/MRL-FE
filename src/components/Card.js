@@ -1,15 +1,7 @@
 import React from "react";
-import {
-  Text,
-  Input,
-  Image,
-  Grid,
-  Button,
-  Upload,
-  DropDown,
-} from "../elements";
+import { Text, Grid } from "../elements";
+import styled from "styled-components";
 import { history } from "../redux/configureStore";
-
 const Card = (props) => {
   console.log("리덕스 초기값", props);
   const {
@@ -22,10 +14,9 @@ const Card = (props) => {
     category2,
     category3,
   } = props;
-
   return (
     <React.Fragment>
-      <Grid padding="20px" margin="10px 40px" width="auto">
+      <Grid padding="10px" margin="5px 10px" width="auto">
         <Grid
           _onClick={() => {
             history.push("/detail/" + postId);
@@ -33,29 +24,30 @@ const Card = (props) => {
           width="auto"
           border="1px solid black"
           padding="0px"
+          bg="#2D2D2D"
         >
           <Image
-            
-            shape="rectangle"
             src={
               "http://img.youtube.com/vi/" + props.url.split("=")[1] + "/0.jpg"
             }
           />
-          <Text margin="30px 0px 0px 0px" is_main>
-            {" "}
-            Singer - {singer}
+          <Text bold margin="15px 0 10px 20px" color="#FFFFFF">
+            가수 : {singer}
           </Text>
-          <Text is_main> title - {songName}</Text>
-          <Text size="20px" bold center>
+          <Text bold margin="0 0 20px 20px" color="#FFFFFF">
+            곡명 : {songName}
+          </Text>
+          <Text bold margin="0 0 15px 20px" size="20px" color="#7F6EE3">
             {category1 ? `#${category1} ` : ""}
             {category2 ? `#${category2} ` : ""}
             {category3 ? `#${category3} ` : ""}
           </Text>
-
         </Grid>
       </Grid>
     </React.Fragment>
   );
 };
-
+const Image = styled.img`
+  border-radius: 5px;
+`;
 export default Card;

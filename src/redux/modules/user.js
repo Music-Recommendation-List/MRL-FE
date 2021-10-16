@@ -91,7 +91,7 @@ const signupDB = (id, pwd, pwd_check) => {
         // console.log(res, "회원가입res확인");
         if (res.data.ok === true) {
           alert(res.data.message);
-          history.push("/");
+          history.push("/login");
         } else {
           alert(res.data.message);
         }

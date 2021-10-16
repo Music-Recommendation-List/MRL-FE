@@ -2,12 +2,13 @@ import React from "react";
 import { actionCreators as userActions } from "../redux/modules/post";
 import { useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
+import Button from '@mui/material/Button';
 import {
   Text,
   Input,
   Image,
   Grid,
-  Button,
+
   Upload,
   DropDown,
   DropDown2,
@@ -180,12 +181,12 @@ const PostAdd = (props) => {
                 width="80px"
                 padding="20px"
                 margin="10px 0px 0px 30px"
-                _onClick={save}
+                onClick={save}
               >
                 저장
               </Button>
               <Button width="80px" padding="20px" margin="10px 10px 0px 10px"
-              _onClick={()=>{
+              onClick={()=>{
                 history.goBack('/')
               }}
               >

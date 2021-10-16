@@ -5,13 +5,13 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
 import styled from "styled-components";
-
-import { actionCreators, actionCreators as postActions } from "../../redux/modules/post";
+import {
+  actionCreators,
+  actionCreators as postActions,
+} from "../../redux/modules/post";
 import { useDispatch } from "react-redux";
-
 export default function SelectAutoWidth() {
   const dispatch = useDispatch();
-
   const pick_category = () => {
     const categoryData = {};
     if (category1 !== "전체") {
@@ -24,27 +24,21 @@ export default function SelectAutoWidth() {
       categoryData.category3 = category3;
     }
     console.log(categoryData);
-
     dispatch(postActions.getPostsDB(categoryData));
   };
-
   //use state
   const [category1, setCategory1] = React.useState("");
   const [category2, setCategory2] = React.useState("");
   const [category3, setCategory3] = React.useState("");
-
   const handleCategory1 = (event) => {
     setCategory1(event.target.value);
   };
-
   const handleCategory2 = (event) => {
     setCategory2(event.target.value);
   };
-
   const handleCategory3 = (event) => {
     setCategory3(event.target.value);
   };
-
   return (
     <Box>
       <div>
@@ -119,24 +113,28 @@ export default function SelectAutoWidth() {
           color: "#FFFFFF",
           fontWeight: "800",
           backgroundColor: "black",
+          fontFamily: "Cafe24SsurroundAir",
         }}
       >
         검색
       </Button>
       <Button
         variant="contained"
-        onClick={()=>{
-          dispatch(actionCreators.getPostsDB())
+        onClick={() => {
+          dispatch(actionCreators.getPostsDB());
+          setCategory1('전체')
+          setCategory2('전체')
+          setCategory3('전체')
         }}
         style={{
           color: "#FFFFFF",
           fontWeight: "800",
           backgroundColor: "black",
+          fontFamily: "Cafe24SsurroundAir",
         }}
       >
         초기화
       </Button>
-
     </Box>
   );
 }

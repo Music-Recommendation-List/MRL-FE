@@ -2,12 +2,17 @@ import React from "react";
 import { Text, Input, Image, Grid, Button, Upload } from "../../elements";
 import CommentItem from "./CommentItem";
 
-const CommentList = () => {
-  return (
+const CommentList = (props) => {
+
+ const comment_list = props.comment_list
+
+   return (
     <React.Fragment>
       <Grid width="50vw" margin="20px auto">
         <Grid>
-          <CommentItem />
+          {comment_list.map((p,idx)=>{
+            return <CommentItem key={p.commentId} {...p}/>
+          })}
         </Grid>
       </Grid>
     </React.Fragment>

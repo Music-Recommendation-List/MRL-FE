@@ -1,8 +1,13 @@
 import React from "react";
-import { Text, Input, Image, Grid, Button, Upload } from "../../elements";
+import { useDispatch } from "react-redux";
+import { actionCreators as commentActions } from "../../redux/modules/comment";
 
+import { Text, Input, Image, Grid, Upload } from "../../elements";
+import Button from '@mui/material/Button';
 const CommentItem = (props) => {
-  const { user_id, post_id, contents } = props;
+
+  const dispatch = useDispatch();
+  const { commentId, contents, id, postId, userId } = props;
 
   const [thisState, setThisState] = React.useState('ready');
 
@@ -15,7 +20,7 @@ const CommentItem = (props) => {
   }
 
   const submitDelete = () => {
-    console.log('delete');
+      dispatch(commentActions.deletedCommentDB(commentId))
   }
 
   const renderSwitch = (state) => {
@@ -24,33 +29,24 @@ const CommentItem = (props) => {
       case 'ready':
         return (
           <Grid column_flex width="auto" margin="0px 0px 0px 15px">
-            <Button width="65px" padding="8px" _onClick={(e) => handleClick('update', e)}>
-              수정
-            </Button>
-            <Button width="65px" padding="8px" _onClick={(e) => handleClick('delete', e)}>
+            <Button width="65px" padding="8px" onClick={(e) => handleClick('delete', e)}>
               삭제
-            </Button>
-          </Grid>
-        )
-      case 'update':
-        return (
-          <Grid column_flex width="auto" margin="0px 0px 0px 15px">
-            <Button width="65px" padding="8px" _onClick={submitUpdate}>
-              수정 확인
-            </Button>
-            <Button width="65px" padding="8px" _onClick={(e) => handleClick('ready', e)}>
-              수정 취소
             </Button>
           </Grid>
         )
       case 'delete':
         return (
-          <Grid column_flex width="auto" margin="0px 0px 0px 15px">
-            <Button width="65px" padding="8px" _onClick={submitDelete}>
-              삭제 확인
+          <Grid column_flex width="auto" margin="0px 0px 0px 5px">
+            <Button 
+            width="50px"
+             padding="5px" 
+             onClick={submitDelete}
+             
+             >
+              확인
             </Button>
-            <Button width="65px" padding="8px" _onClick={(e) => handleClick('ready', e)}>
-              삭제 취소
+            <Button width="50px" padding="5px" onClick={(e) => handleClick('ready', e)}>
+              취소
             </Button>
           </Grid>
         )
@@ -60,10 +56,9 @@ const CommentItem = (props) => {
 
   return (
     <React.Fragment>
-      <h1>{thisState}</h1>
-      <Grid is_flex margin="0px 0px 10px 0px">
+      <Grid is_flex margin="0px 0px 20px 0px" >
         <Grid width="auto" margin="0px 8px 0px 0px">
-          <Text bold>{user_id}</Text>
+          <Text bold>{userId}</Text>
         </Grid>
         <Grid border>
           <Text>{contents}</Text>
@@ -74,11 +69,7 @@ const CommentItem = (props) => {
   );
 };
 
-CommentItem.defaultProps = {
-  user_id: "abcd",
-  post_id: 1,
-  contents: "안녕하세요옹!",
-};
+
 
 
 export default CommentItem;
