@@ -61,6 +61,6 @@ https://www.notion.so/5e1322440c5049f1806615dd1ee1cf4c?v=8bce2554108043539cc4bd5
 
 ## ⌨️ 느낀점
 
-- 김기철 회고 ([Velog](주소))
+- 김기철 회고 ([Velog](https://velog.io/@choel0304/WIL-10.1110.17-%ED%95%AD%ED%95%B4-5%EC%A3%BC%EC%B0%A8))
 - 류승환 회고 ([Velog](주소))
 - 박새봄 회고 ([Velog](https://velog.io/@bomboming/WIL-%ED%95%AD%ED%95%B499-5%EC%A3%BC%EC%B0%A8-%ED%9A%8C%EA%B3%A0%EB%A1%9D))
